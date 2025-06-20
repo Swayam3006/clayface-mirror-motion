@@ -873,7 +873,7 @@ const Index = () => {
                 }}
               >
                 <RevealText inView={problemInView} delay={1.0}>
-                  Crisis
+                  Paradox
                 </RevealText>
               </motion.span>
             </motion.h2>
@@ -885,13 +885,14 @@ const Index = () => {
               transition={{ duration: 0.6, delay: 1.0 }}
             >
               <RevealText inView={problemInView} delay={1.2}>
-                CPG brand managers face systemic challenges that cost companies millions in lost opportunities and misaligned strategies.
+                Brand managers have access to more data than ever before, yet struggle to make confident, 
+                timely decisions that drive meaningful business impact.
               </RevealText>
             </motion.p>
           </motion.div>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Problem 1 - Data Fragmentation */}
+            {/* Problem 1 - Information Overload */}
             <MorphingCard delay={0.2} inView={problemInView}>
               <Card className="relative overflow-hidden border border-slate-200 shadow-xl bg-white group hover:shadow-2xl transition-all duration-500 h-full">
                 <motion.div 
@@ -922,15 +923,15 @@ const Index = () => {
                   >
                     <Database className="w-8 h-8 text-slate-600" />
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4">Data Fragmentation</h3>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-4">Information Overload</h3>
                   <p className="text-slate-600 leading-relaxed mb-6 font-medium">
-                    Multiple disconnected systems create information silos, preventing unified strategic decision-making across brand portfolios.
+                    Drowning in data from multiple sources without clear insights. Brand managers spend 70% of their time collecting and reconciling data instead of making strategic decisions.
                   </p>
                   <div className="space-y-3">
                     {[
-                      "7+ disconnected data sources",
-                      "Inconsistent performance metrics", 
-                      "Strategic misalignment across teams"
+                      "15+ disparate data sources",
+                      "40 hours/week on data wrangling", 
+                      "Analysis paralysis in critical moments"
                     ].map((text, index) => (
                       <motion.div 
                         key={index}
@@ -953,11 +954,11 @@ const Index = () => {
               </Card>
             </MorphingCard>
             
-            {/* Problem 2 - Insight Lag */}
+            {/* Problem 2 - Reactive Decision Making */}
             <MorphingCard delay={0.4} inView={problemInView}>
               <Card className="relative overflow-hidden border border-slate-200 shadow-xl bg-white group hover:shadow-2xl transition-all duration-500 h-full">
                 <motion.div 
-                  className="absolute top-0 left-0 w-full h-1 bg-blue-600"
+                  className="absolute top-0 left-0 w-full h-1 bg-red-600"
                   initial={{ scaleX: 0 }}
                   animate={problemInView ? { scaleX: 1 } : {}}
                   transition={{ duration: 0.8, delay: 0.6 }}
@@ -971,28 +972,28 @@ const Index = () => {
                   }}
                   transition={{ duration: 0.5 }}
                 >
-                  <Clock className="w-12 h-12 text-blue-600" />
+                  <Clock className="w-12 h-12 text-red-600" />
                 </motion.div>
                 <CardContent className="p-8 relative">
                   <motion.div 
-                    className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 shadow-sm border border-blue-100"
+                    className="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center mb-6 shadow-sm border border-red-100"
                     whileHover={{ 
                       scale: 1.1,
                       rotate: [0, -10, 10, 0]
                     }}
                     transition={{ duration: 0.5 }}
                   >
-                    <Clock className="w-8 h-8 text-blue-600" />
+                    <Clock className="w-8 h-8 text-red-600" />
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4">Insight Lag</h3>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-4">Reactive Decision Making</h3>
                   <p className="text-slate-600 leading-relaxed mb-6 font-medium">
-                    Critical market insights arrive weeks too late, forcing reactive strategies instead of proactive competitive advantage.
+                    Always playing catch-up to market changes and competitor moves. By the time insights are actionable, opportunities have already passed.
                   </p>
                   <div className="space-y-3">
                     {[
-                      "3-4 weeks for actionable insights",
-                      "Outdated market intelligence",
-                      "Competitive disadvantage"
+                      "6-8 week insight delivery cycles",
+                      "Missed competitive opportunities",
+                      "Constant fire-fighting mode"
                     ].map((text, index) => (
                       <motion.div 
                         key={index}
@@ -1003,7 +1004,7 @@ const Index = () => {
                         whileHover={{ x: 5, backgroundColor: "#f1f5f9" }}
                       >
                         <motion.div 
-                          className="w-2 h-2 bg-blue-400 rounded-full flex-shrink-0"
+                          className="w-2 h-2 bg-red-400 rounded-full flex-shrink-0"
                           animate={{ scale: [1, 1.2, 1] }}
                           transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
                         ></motion.div>
@@ -1015,11 +1016,11 @@ const Index = () => {
               </Card>
             </MorphingCard>
             
-            {/* Problem 3 - Decision Uncertainty */}
+            {/* Problem 3 - Strategic Blind Spots */}
             <MorphingCard delay={0.6} inView={problemInView}>
               <Card className="relative overflow-hidden border border-slate-200 shadow-xl bg-white group hover:shadow-2xl transition-all duration-500 h-full">
                 <motion.div 
-                  className="absolute top-0 left-0 w-full h-1 bg-slate-700"
+                  className="absolute top-0 left-0 w-full h-1 bg-orange-600"
                   initial={{ scaleX: 0 }}
                   animate={problemInView ? { scaleX: 1 } : {}}
                   transition={{ duration: 0.8, delay: 0.8 }}
@@ -1033,28 +1034,28 @@ const Index = () => {
                   }}
                   transition={{ duration: 0.5 }}
                 >
-                  <TrendingDown className="w-12 h-12 text-slate-700" />
+                  <TrendingDown className="w-12 h-12 text-orange-600" />
                 </motion.div>
                 <CardContent className="p-8 relative">
                   <motion.div 
-                    className="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center mb-6 shadow-sm border border-slate-200"
+                    className="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center mb-6 shadow-sm border border-orange-100"
                     whileHover={{ 
                       scale: 1.1,
                       rotate: [0, -10, 10, 0]
                     }}
                     transition={{ duration: 0.5 }}
                   >
-                    <TrendingDown className="w-8 h-8 text-slate-700" />
+                    <TrendingDown className="w-8 h-8 text-orange-600" />
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4">Decision Uncertainty</h3>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-4">Strategic Blind Spots</h3>
                   <p className="text-slate-600 leading-relaxed mb-6 font-medium">
-                    Lack of integrated analytics creates uncertainty in strategic decisions, limiting confidence in budget allocation and market positioning.
+                    Critical market signals and consumer behavior shifts go unnoticed until they become major threats, resulting in massive market share losses.
                   </p>
                   <div className="space-y-3">
                     {[
-                      "Intuition-based strategy",
-                      "Unsubstantiated ROI claims",
-                      "Risk-averse decision making"
+                      "Hidden consumer behavior shifts",
+                      "Undetected competitive threats",
+                      "Missed growth opportunities"
                     ].map((text, index) => (
                       <motion.div 
                         key={index}
@@ -1065,7 +1066,7 @@ const Index = () => {
                         whileHover={{ x: 5, backgroundColor: "#f1f5f9" }}
                       >
                         <motion.div 
-                          className="w-2 h-2 bg-slate-500 rounded-full flex-shrink-0"
+                          className="w-2 h-2 bg-orange-400 rounded-full flex-shrink-0"
                           animate={{ scale: [1, 1.2, 1] }}
                           transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
                         ></motion.div>
@@ -1273,7 +1274,7 @@ const Index = () => {
               <motion.span
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={statsInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.6, delay: 0.6 }}
+                transition={{ duration: 0.6, delay: 0.6, ease: "backOut" }}
               >
                 The Impact Is
               </motion.span>
