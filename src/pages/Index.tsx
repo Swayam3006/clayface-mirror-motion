@@ -1116,19 +1116,27 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Scroll trigger zones - these create the scrollable height */}
-          <div className="relative -mt-[100vh]">
+          {/* Scroll trigger zones - these create the scrollable height but are positioned absolutely to not interfere */}
+          <div className="absolute top-0 left-0 w-full pointer-events-none">
             {modules.map((_, idx) => (
               <div
                 key={idx}
                 ref={(el) => (moduleRefs.current[idx] = el)}
                 data-index={idx}
-                className="h-screen flex items-center justify-center opacity-0 pointer-events-none"
+                className="h-screen opacity-0"
+                style={{ 
+                  position: 'absolute',
+                  top: `${idx * 100}vh`,
+                  width: '100%'
+                }}
               >
                 {/* Hidden trigger zone */}
               </div>
             ))}
           </div>
+          
+          {/* Spacer to create scroll height */}
+          <div style={{ height: `${modules.length * 100}vh` }} className="pointer-events-none" />
         </div>
       </section>
 
