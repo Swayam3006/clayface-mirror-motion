@@ -733,7 +733,7 @@ const Index = () => {
         </motion.div>
       </section>
 
-      {/* Enhanced Problem Section - FIXED VERSION */}
+      {/* Enhanced Problem Section - UPDATED VERSION */}
       <section className="pt-32 pb-24 px-6 bg-gradient-to-br from-gray-50 via-white to-slate-50 relative overflow-hidden" ref={problemRef}>
         {/* Advanced Parallax Background */}
         <motion.div 
@@ -812,7 +812,7 @@ const Index = () => {
               >
                 <AlertTriangle className="w-5 h-5" />
               </motion.div>
-              The Data Overwhelm Problem
+              The Hidden Cost of Complexity
             </motion.div>
             
             <motion.h2 
@@ -822,7 +822,7 @@ const Index = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <RevealText inView={problemInView} delay={0.6} className="block">
-                Why Brand Managers
+                Brand Managers Are
               </RevealText>
               <br />
               <motion.span 
@@ -836,7 +836,7 @@ const Index = () => {
                 transition={{ duration: 0.8, delay: 0.8, ease: "backOut" }}
               >
                 <RevealText inView={problemInView} delay={1.0}>
-                  Struggle Every Day
+                  Drowning in Data—But Starving for Direction
                 </RevealText>
               </motion.span>
             </motion.h2>
@@ -848,8 +848,7 @@ const Index = () => {
               transition={{ duration: 0.6, delay: 1.0 }}
             >
               <RevealText inView={problemInView} delay={1.2}>
-                Despite having access to more data than ever before, 73% of brand managers report feeling 
-                overwhelmed and unable to extract actionable insights when they need them most.
+                Even with dashboards, reports, and agencies at their fingertips, most brand managers can't get the answers they need, when they need them. Strategy decisions get delayed, gut-feel takes over, and growth opportunities slip away in the noise.
               </RevealText>
             </motion.p>
           </motion.div>
@@ -1054,11 +1053,11 @@ const Index = () => {
         
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-3 bg-slate-800 text-slate-300 px-6 py-3 rounded-full text-sm font-semibold mb-8 border border-slate-700">
+            <div className="inline-flex items-center gap-3 bg-slate-800 text-slate-300 px-6 py-3 rounded-full text-sm font-medium mb-8 border border-slate-700">
               <Globe className="w-5 h-5" />
               Industry-Wide Impact
             </div>
-            <h2 className="text-5xl md:text-7xl font-black text-white mb-8 leading-tight">
+            <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
               The Global
               <br />
               <span className="text-slate-400">
