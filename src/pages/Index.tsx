@@ -1,8 +1,42 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { ArrowRight, Menu, BarChart3, AlertTriangle, FileText, Calculator, Mail, TrendingUp, Users, Play, Zap, Target, Brain, Database, Clock, TrendingDown, Globe } from 'lucide-react';
+import { 
+  ChevronRight, 
+  Play, 
+  CheckCircle, 
+  ArrowRight, 
+  Zap, 
+  Target, 
+  TrendingUp, 
+  Users, 
+  BarChart3, 
+  Clock,
+  AlertTriangle,
+  Globe,
+  Brain,
+  Lightbulb,
+  Shield,
+  Rocket,
+  Star,
+  Award,
+  MessageSquare,
+  Calendar,
+  DollarSign,
+  PieChart,
+  Activity,
+  Database,
+  Filter,
+  Search,
+  RefreshCw,
+  Eye,
+  Layers,
+  ArrowUpRight,
+  Sparkles,
+  ChevronUp,
+  X
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { motion, useScroll, useTransform, useInView, useMotionValue, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
 
 const Index = () => {
   const [activeModule, setActiveModule] = useState(0);
@@ -412,7 +446,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black font-sans">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden">
       {/* Navigation */}
       <motion.nav 
         className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100"
@@ -734,90 +768,85 @@ const Index = () => {
       </section>
 
       {/* Enhanced Problem Section - UPDATED VERSION */}
-      <section className="pt-32 pb-24 px-6 bg-gradient-to-br from-gray-50 via-white to-slate-50 relative overflow-hidden" ref={problemRef}>
+      <section className="pt-32 pb-24 px-6 bg-gradient-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden" ref={problemRef}>
         {/* Advanced Parallax Background */}
         <motion.div 
-          className="absolute inset-0 opacity-20"
-          style={{ y: problemParallaxY }}
-        >
-          {/* Morphing gradient blobs */}
-          <motion.div 
-            className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-r from-slate-300/40 to-gray-300/40 rounded-full blur-3xl"
-            animate={{ 
-              x: [0, 120, 0],
-              y: [0, -80, 0],
-              scale: [1, 1.4, 1],
-              rotate: [0, 180, 360],
-              borderRadius: ["50%", "40%", "50%"]
-            }}
-            transition={{ 
-              duration: 20,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          <motion.div 
-            className="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-r from-blue-300/30 to-indigo-300/30 rounded-full blur-3xl"
-            animate={{ 
-              x: [0, -100, 0],
-              y: [0, 60, 0],
-              scale: [1, 0.7, 1],
-              rotate: [360, 180, 0],
-              borderRadius: ["50%", "60%", "50%"]
-            }}
-            transition={{ 
-              duration: 25,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 5
-            }}
-          />
-          <motion.div 
-            className="absolute top-1/3 left-1/3 w-64 h-64 bg-gradient-to-r from-purple-300/20 to-pink-300/20 rounded-full blur-3xl"
-            animate={{ 
-              scale: [1, 1.6, 1],
-              rotate: [0, 360],
-              opacity: [0.2, 0.4, 0.2],
-              borderRadius: ["50%", "30%", "50%"]
-            }}
-            transition={{ 
-              duration: 15,
-              repeat: Infinity,
-              ease: "linear",
-              delay: 2
-            }}
-          />
-        </motion.div>
+          className="absolute inset-0 opacity-30"
+          style={{
+            background: `
+              radial-gradient(circle at 20% 50%, rgb(148, 163, 184, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgb(100, 116, 139, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 40% 80%, rgb(71, 85, 105, 0.1) 0%, transparent 50%)
+            `
+          }}
+        />
         
+        {/* Floating Elements */}
+        <motion.div 
+          className="absolute top-20 left-10 w-20 h-20 border border-slate-200 rounded-full opacity-20"
+          animate={{ 
+            rotate: 360,
+            scale: [1, 1.1, 1]
+          }}
+          transition={{ 
+            rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+            scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+          }}
+        />
+        
+        <motion.div 
+          className="absolute top-32 right-20 w-16 h-16 bg-slate-100 rounded-lg opacity-20"
+          animate={{ 
+            y: [-10, 10, -10],
+            rotate: [0, 5, -5, 0]
+          }}
+          transition={{ 
+            duration: 6, 
+            repeat: Infinity, 
+            ease: "easeInOut" 
+          }}
+        />
+        
+        <motion.div 
+          className="absolute bottom-20 left-1/4 w-12 h-12 border-2 border-slate-300 rounded-full opacity-20"
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.2, 0.4, 0.2]
+          }}
+          transition={{ 
+            duration: 3, 
+            repeat: Infinity, 
+            ease: "easeInOut" 
+          }}
+        />
+
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div 
             className="text-center mb-20"
-            initial={{ opacity: 0, y: 60 }}
+            initial={{ opacity: 0, y: 50 }}
             animate={problemInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
+            {/* Professional Badge */}
             <motion.div 
-              className="inline-flex items-center gap-3 bg-red-50 text-red-700 px-6 py-3 rounded-full text-sm font-semibold mb-8 border border-red-200"
-              initial={{ scale: 0, opacity: 0 }}
-              animate={problemInView ? { scale: 1, opacity: 1 } : {}}
-              transition={{ duration: 0.6, delay: 0.2, ease: "backOut" }}
-              whileHover={{ 
-                scale: 1.05,
-                boxShadow: "0 5px 15px rgba(239, 68, 68, 0.3)"
-              }}
+              className="inline-flex items-center gap-3 bg-slate-100 text-slate-700 px-6 py-3 rounded-full text-sm font-medium mb-8 border border-slate-200 shadow-sm"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={problemInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <motion.div
-                animate={{ rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
+              <motion.div 
+                className="flex items-center justify-center w-5 h-5 bg-slate-300 rounded-full"
+                animate={problemInView ? { rotate: 360 } : {}}
+                transition={{ duration: 1.5, delay: 0.8, ease: "backOut" }}
               >
-                <AlertTriangle className="w-5 h-5" />
+                <AlertTriangle className="w-3 h-3 text-slate-600" />
               </motion.div>
               The Hidden Cost of Complexity
             </motion.div>
             
             <motion.h2 
-              className="text-5xl md:text-7xl font-black text-slate-900 mb-8 leading-tight"
-              initial={{ opacity: 0, y: 40 }}
+              className="text-4xl md:text-6xl lg:text-7xl font-bold text-slate-900 mb-8 leading-tight"
+              initial={{ opacity: 0, y: 30 }}
               animate={problemInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
@@ -826,13 +855,13 @@ const Index = () => {
               </RevealText>
               <br />
               <motion.span 
-                className="text-red-600 inline-block"
-                initial={{ opacity: 0, scale: 0.8, rotateX: -90 }}
+                className="bg-gradient-to-r from-slate-600 via-slate-700 to-slate-800 bg-clip-text text-transparent relative"
+                initial={{ opacity: 0, rotateX: -90 }}
                 animate={problemInView ? { 
                   opacity: 1, 
-                  scale: 1, 
-                  rotateX: 0
+                  rotateX: 0,
                 } : {}}
+                style={{ transformOrigin: "center bottom" }}
                 transition={{ duration: 0.8, delay: 0.8, ease: "backOut" }}
               >
                 <RevealText inView={problemInView} delay={1.0}>
@@ -840,206 +869,76 @@ const Index = () => {
                 </RevealText>
               </motion.span>
             </motion.h2>
-            
+
             <motion.p 
-              className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed font-medium"
-              initial={{ opacity: 0, y: 30 }}
+              className="text-xl md:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
               animate={problemInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 1.0 }}
             >
               <RevealText inView={problemInView} delay={1.2}>
-                Even with dashboards, reports, and agencies at their fingertips, most brand managers can't get the answers they need, when they need them. Strategy decisions get delayed, gut-feel takes over, and growth opportunities slip away in the noise.
+                Despite having access to comprehensive dashboards and detailed reports, most brand managers struggle to extract actionable insights when critical decisions need to be made. This leads to delayed strategic initiatives, reliance on intuition over data, and missed growth opportunities.
               </RevealText>
             </motion.p>
           </motion.div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Problem 1 - Information Overload */}
-            <MorphingCard delay={0.2} inView={problemInView}>
-              <Card className="relative overflow-hidden border border-slate-200 shadow-xl bg-white group hover:shadow-2xl transition-all duration-500 h-full">
-                <motion.div 
-                  className="absolute top-0 left-0 w-full h-1 bg-slate-600"
-                  initial={{ scaleX: 0 }}
-                  animate={problemInView ? { scaleX: 1 } : {}}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                ></motion.div>
-                <motion.div 
-                  className="absolute top-4 right-4 opacity-10 group-hover:opacity-20 transition-opacity"
-                  whileHover={{ 
-                    scale: 1.2,
-                    rotate: 360,
-                    opacity: 0.3
-                  }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <Database className="w-12 h-12 text-slate-600" />
-                </motion.div>
-                <CardContent className="p-8 relative">
-                  <motion.div 
-                    className="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center mb-6 shadow-sm border border-slate-200"
-                    whileHover={{ 
-                      scale: 1.1,
-                      rotate: [0, -10, 10, 0]
-                    }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <Database className="w-8 h-8 text-slate-600" />
-                  </motion.div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4">Data Chaos</h3>
-                  <p className="text-slate-600 leading-relaxed mb-6 font-medium">
-                    Drowning in 15+ disconnected data sources. Brand managers waste 70% of their time just finding and reconciling data instead of driving growth.
-                  </p>
-                  <div className="space-y-3">
-                    {[
-                      "15+ disparate data sources",
-                      "40 hours/week on data wrangling", 
-                      "Analysis paralysis in critical moments"
-                    ].map((text, index) => (
-                      <motion.div 
-                        key={index}
-                        className="flex items-center gap-3 text-sm text-slate-500 bg-slate-50 p-3 rounded-lg border border-slate-100"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={problemInView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ duration: 0.5, delay: 0.6 + (index * 0.1) }}
-                        whileHover={{ x: 5, backgroundColor: "#f1f5f9" }}
-                      >
-                        <motion.div 
-                          className="w-2 h-2 bg-slate-400 rounded-full flex-shrink-0"
-                          animate={{ scale: [1, 1.2, 1] }}
-                          transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
-                        ></motion.div>
-                        <span className="font-medium">{text}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </MorphingCard>
-            
-            {/* Problem 2 - Reactive Decision Making */}
-            <MorphingCard delay={0.4} inView={problemInView}>
-              <Card className="relative overflow-hidden border border-slate-200 shadow-xl bg-white group hover:shadow-2xl transition-all duration-500 h-full">
-                <motion.div 
-                  className="absolute top-0 left-0 w-full h-1 bg-red-600"
-                  initial={{ scaleX: 0 }}
-                  animate={problemInView ? { scaleX: 1 } : {}}
-                  transition={{ duration: 0.8, delay: 0.6 }}
-                ></motion.div>
-                <motion.div 
-                  className="absolute top-4 right-4 opacity-10 group-hover:opacity-20 transition-opacity"
-                  whileHover={{ 
-                    scale: 1.2,
-                    rotate: 360,
-                    opacity: 0.3
-                  }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <Clock className="w-12 h-12 text-red-600" />
-                </motion.div>
-                <CardContent className="p-8 relative">
-                  <motion.div 
-                    className="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center mb-6 shadow-sm border border-red-100"
-                    whileHover={{ 
-                      scale: 1.1,
-                      rotate: [0, -10, 10, 0]
-                    }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <Clock className="w-8 h-8 text-red-600" />
-                  </motion.div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4">Always Too Late</h3>
-                  <p className="text-slate-600 leading-relaxed mb-6 font-medium">
-                    By the time insights are ready, competitors have moved, campaigns have failed, and market share is lost. 6-8 week cycles kill competitive advantage.
-                  </p>
-                  <div className="space-y-3">
-                    {[
-                      "6-8 week insight delivery cycles",
-                      "Missed competitive opportunities",
-                      "Constant fire-fighting mode"
-                    ].map((text, index) => (
-                      <motion.div 
-                        key={index}
-                        className="flex items-center gap-3 text-sm text-slate-500 bg-slate-50 p-3 rounded-lg border border-slate-100"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={problemInView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ duration: 0.5, delay: 0.8 + (index * 0.1) }}
-                        whileHover={{ x: 5, backgroundColor: "#f1f5f9" }}
-                      >
-                        <motion.div 
-                          className="w-2 h-2 bg-red-400 rounded-full flex-shrink-0"
-                          animate={{ scale: [1, 1.2, 1] }}
-                          transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
-                        ></motion.div>
-                        <span className="font-medium">{text}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </MorphingCard>
-            
-            {/* Problem 3 - Strategic Blind Spots */}
-            <MorphingCard delay={0.6} inView={problemInView}>
-              <Card className="relative overflow-hidden border border-slate-200 shadow-xl bg-white group hover:shadow-2xl transition-all duration-500 h-full">
-                <motion.div 
-                  className="absolute top-0 left-0 w-full h-1 bg-orange-600"
-                  initial={{ scaleX: 0 }}
-                  animate={problemInView ? { scaleX: 1 } : {}}
-                  transition={{ duration: 0.8, delay: 0.8 }}
-                ></motion.div>
-                <motion.div 
-                  className="absolute top-4 right-4 opacity-10 group-hover:opacity-20 transition-opacity"
-                  whileHover={{ 
-                    scale: 1.2,
-                    rotate: 360,
-                    opacity: 0.3
-                  }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <TrendingDown className="w-12 h-12 text-orange-600" />
-                </motion.div>
-                <CardContent className="p-8 relative">
-                  <motion.div 
-                    className="w-16 h-16 bg-orange-50 rounded-2xl flex items-center justify-center mb-6 shadow-sm border border-orange-100"
-                    whileHover={{ 
-                      scale: 1.1,
-                      rotate: [0, -10, 10, 0]
-                    }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <TrendingDown className="w-8 h-8 text-orange-600" />
-                  </motion.div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4">Critical Blind Spots</h3>
-                  <p className="text-slate-600 leading-relaxed mb-6 font-medium">
-                    Market shifts happen fast, but traditional dashboards show them weeks later. By then, it's damage control instead of opportunity capture.
-                  </p>
-                  <div className="space-y-3">
-                    {[
-                      "Hidden consumer behavior shifts",
-                      "Undetected competitive threats",
-                      "Missed growth opportunities"
-                    ].map((text, index) => (
-                      <motion.div 
-                        key={index}
-                        className="flex items-center gap-3 text-sm text-slate-500 bg-slate-50 p-3 rounded-lg border border-slate-100"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={problemInView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ duration: 0.5, delay: 1.0 + (index * 0.1) }}
-                        whileHover={{ x: 5, backgroundColor: "#f1f5f9" }}
-                      >
-                        <motion.div 
-                          className="w-2 h-2 bg-orange-400 rounded-full flex-shrink-0"
-                          animate={{ scale: [1, 1.2, 1] }}
-                          transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
-                        ></motion.div>
-                        <span className="font-medium">{text}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </MorphingCard>
+
+          {/* Problem Grid */}
+          <div className="grid md:grid-cols-3 gap-8 mb-20">
+            {[
+              {
+                icon: Database,
+                title: "Information Overload",
+                description: "Multiple data sources create confusion instead of clarity",
+                delay: 0.2
+              },
+              {
+                icon: Clock,
+                title: "Decision Delays",
+                description: "Critical choices get postponed while searching for insights",
+                delay: 0.4
+              },
+              {
+                icon: Target,
+                title: "Missed Opportunities",
+                description: "Growth potential slips away in the complexity",
+                delay: 0.6
+              }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                className="group bg-white/70 backdrop-blur-sm border border-slate-200 rounded-2xl p-8 hover:shadow-xl transition-all duration-300"
+                initial={{ opacity: 0, y: 30 }}
+                animate={problemInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: item.delay }}
+                whileHover={{ y: -5, scale: 1.02 }}
+              >
+                <div className="flex items-center justify-center w-16 h-16 bg-slate-100 rounded-2xl mb-6 group-hover:bg-slate-200 transition-colors">
+                  <item.icon className="w-8 h-8 text-slate-600" />
+                </div>
+                <h3 className="text-xl font-semibold text-slate-900 mb-4">{item.title}</h3>
+                <p className="text-slate-600 leading-relaxed">{item.description}</p>
+              </motion.div>
+            ))}
           </div>
+
+          {/* Call to Action */}
+          <motion.div 
+            className="text-center"
+            initial={{ opacity: 0, y: 30 }}
+            animate={problemInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          >
+            <p className="text-lg text-slate-600 mb-8">
+              There has to be a better way to navigate the complexity.
+            </p>
+            <Button 
+              size="lg" 
+              className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              Discover the Solution
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+          </motion.div>
         </div>
       </section>
 
@@ -1348,7 +1247,7 @@ const Index = () => {
                     className="text-4xl font-bold text-black mb-2 group-hover:text-blue-600 transition-colors"
                     initial={{ scale: 0 }}
                     animate={statsInView ? { scale: 1 } : {}}
-                    transition={{ duration: 0.6, delay: 0.8, ease: "backOut" }}
+                    transition={{ duration: 0.6, delay: 1.0, ease: "backOut" }}
                   >
                     Minutes
                   </motion.div>
@@ -1401,7 +1300,7 @@ const Index = () => {
                     className="text-4xl font-bold text-black mb-2 group-hover:text-purple-600 transition-colors"
                     initial={{ scale: 0 }}
                     animate={statsInView ? { scale: 1 } : {}}
-                    transition={{ duration: 0.6, delay: 1.0, ease: "backOut" }}
+                    transition={{ duration: 0.6, delay: 1.2, ease: "backOut" }}
                   >
                     Single
                   </motion.div>
