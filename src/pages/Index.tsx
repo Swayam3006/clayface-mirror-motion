@@ -1069,8 +1069,8 @@ const Index = () => {
         {/* Subtle gradient backdrop */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/5 to-slate-900/10 pointer-events-none" />
 
-        {/* Container that creates the scroll area */}
-        <div className="relative" style={{ height: `${modules.length * 100}vh` }}>
+        {/* Container that creates the scroll area - reduced height */}
+        <div className="relative" style={{ height: `${modules.length * 50}vh` }}>
           {/* Sticky container that displays the active module */}
           <div className="sticky top-0 z-10 flex flex-col justify-center min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 py-20">
             <div className="text-center mb-16 px-6">
@@ -1116,7 +1116,7 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Scroll trigger zones positioned absolutely */}
+          {/* Scroll trigger zones positioned absolutely with reduced spacing */}
           {modules.map((_, idx) => (
             <div
               key={idx}
@@ -1124,10 +1124,10 @@ const Index = () => {
               data-index={idx}
               className="absolute opacity-0 pointer-events-none"
               style={{ 
-                top: `${idx * 100}vh`,
+                top: `${idx * 50}vh`,
                 left: 0,
                 width: '100%',
-                height: '100vh'
+                height: '50vh'
               }}
             >
               {/* Hidden trigger zone */}
