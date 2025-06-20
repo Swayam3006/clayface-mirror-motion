@@ -733,7 +733,7 @@ const Index = () => {
         </motion.div>
       </section>
 
-      {/* Enhanced Problem Section with Advanced Parallax */}
+      {/* Enhanced Problem Section - FIXED VERSION */}
       <section className="pt-32 pb-24 px-6 bg-gradient-to-br from-gray-50 via-white to-slate-50 relative overflow-hidden" ref={problemRef}>
         {/* Advanced Parallax Background */}
         <motion.div 
@@ -787,36 +787,6 @@ const Index = () => {
               delay: 2
             }}
           />
-          
-          {/* Floating geometric shapes */}
-          <motion.div 
-            className="absolute top-1/4 right-1/4 w-16 h-16 bg-slate-400/20 rotate-45"
-            animate={{ 
-              y: [0, -40, 0],
-              rotate: [45, 225, 45],
-              scale: [1, 1.2, 1]
-            }}
-            transition={{ 
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1
-            }}
-          />
-          <motion.div 
-            className="absolute bottom-1/3 left-1/4 w-12 h-12 bg-blue-400/20 rounded-full"
-            animate={{ 
-              x: [0, 60, 0],
-              y: [0, -20, 0],
-              scale: [1, 1.5, 1]
-            }}
-            transition={{ 
-              duration: 12,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 3
-            }}
-          />
         </motion.div>
         
         <div className="max-w-7xl mx-auto relative z-10">
@@ -827,13 +797,13 @@ const Index = () => {
             transition={{ duration: 0.8 }}
           >
             <motion.div 
-              className="inline-flex items-center gap-3 bg-slate-100 text-slate-700 px-6 py-3 rounded-full text-sm font-semibold mb-8 border border-slate-200"
+              className="inline-flex items-center gap-3 bg-red-50 text-red-700 px-6 py-3 rounded-full text-sm font-semibold mb-8 border border-red-200"
               initial={{ scale: 0, opacity: 0 }}
               animate={problemInView ? { scale: 1, opacity: 1 } : {}}
               transition={{ duration: 0.6, delay: 0.2, ease: "backOut" }}
               whileHover={{ 
                 scale: 1.05,
-                boxShadow: "0 5px 15px rgba(0,0,0,0.1)"
+                boxShadow: "0 5px 15px rgba(239, 68, 68, 0.3)"
               }}
             >
               <motion.div
@@ -842,7 +812,7 @@ const Index = () => {
               >
                 <AlertTriangle className="w-5 h-5" />
               </motion.div>
-              Critical Business Challenge
+              The Data Overwhelm Problem
             </motion.div>
             
             <motion.h2 
@@ -852,28 +822,21 @@ const Index = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <RevealText inView={problemInView} delay={0.6} className="block">
-                The Strategic Decision
+                Why Brand Managers
               </RevealText>
               <br />
               <motion.span 
-                className="text-slate-600 inline-block"
+                className="text-red-600 inline-block"
                 initial={{ opacity: 0, scale: 0.8, rotateX: -90 }}
                 animate={problemInView ? { 
                   opacity: 1, 
                   scale: 1, 
-                  rotateX: 0,
-                  background: "linear-gradient(45deg, #475569, #64748b, #94a3b8)"
+                  rotateX: 0
                 } : {}}
                 transition={{ duration: 0.8, delay: 0.8, ease: "backOut" }}
-                style={{
-                  backgroundSize: "200% 200%",
-                  backgroundClip: "text",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent"
-                }}
               >
                 <RevealText inView={problemInView} delay={1.0}>
-                  Paradox
+                  Struggle Every Day
                 </RevealText>
               </motion.span>
             </motion.h2>
@@ -885,8 +848,8 @@ const Index = () => {
               transition={{ duration: 0.6, delay: 1.0 }}
             >
               <RevealText inView={problemInView} delay={1.2}>
-                Brand managers have access to more data than ever before, yet struggle to make confident, 
-                timely decisions that drive meaningful business impact.
+                Despite having access to more data than ever before, 73% of brand managers report feeling 
+                overwhelmed and unable to extract actionable insights when they need them most.
               </RevealText>
             </motion.p>
           </motion.div>
@@ -923,9 +886,9 @@ const Index = () => {
                   >
                     <Database className="w-8 h-8 text-slate-600" />
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4">Information Overload</h3>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-4">Data Chaos</h3>
                   <p className="text-slate-600 leading-relaxed mb-6 font-medium">
-                    Drowning in data from multiple sources without clear insights. Brand managers spend 70% of their time collecting and reconciling data instead of making strategic decisions.
+                    Drowning in 15+ disconnected data sources. Brand managers waste 70% of their time just finding and reconciling data instead of driving growth.
                   </p>
                   <div className="space-y-3">
                     {[
@@ -985,9 +948,9 @@ const Index = () => {
                   >
                     <Clock className="w-8 h-8 text-red-600" />
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4">Reactive Decision Making</h3>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-4">Always Too Late</h3>
                   <p className="text-slate-600 leading-relaxed mb-6 font-medium">
-                    Always playing catch-up to market changes and competitor moves. By the time insights are actionable, opportunities have already passed.
+                    By the time insights are ready, competitors have moved, campaigns have failed, and market share is lost. 6-8 week cycles kill competitive advantage.
                   </p>
                   <div className="space-y-3">
                     {[
@@ -1047,9 +1010,9 @@ const Index = () => {
                   >
                     <TrendingDown className="w-8 h-8 text-orange-600" />
                   </motion.div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4">Strategic Blind Spots</h3>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-4">Critical Blind Spots</h3>
                   <p className="text-slate-600 leading-relaxed mb-6 font-medium">
-                    Critical market signals and consumer behavior shifts go unnoticed until they become major threats, resulting in massive market share losses.
+                    Market shifts happen fast, but traditional dashboards show them weeks later. By then, it's damage control instead of opportunity capture.
                   </p>
                   <div className="space-y-3">
                     {[
