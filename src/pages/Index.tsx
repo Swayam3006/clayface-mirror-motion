@@ -855,23 +855,8 @@ const Index = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <RevealText inView={problemInView} delay={0.6} className="block">
-                Brand Managers Are
+                Brand Managers Are Drowning in Data—But Starving for Direction
               </RevealText>
-              <br />
-              <motion.span 
-                className="bg-gradient-to-r from-slate-600 via-slate-700 to-slate-800 bg-clip-text text-transparent relative"
-                initial={{ opacity: 0, rotateX: -90 }}
-                animate={problemInView ? { 
-                  opacity: 1, 
-                  rotateX: 0,
-                } : {}}
-                style={{ transformOrigin: "center bottom" }}
-                transition={{ duration: 0.8, delay: 0.8, ease: "backOut" }}
-              >
-                <RevealText inView={problemInView} delay={1.0}>
-                  Drowning in Data—But Starving for Direction
-                </RevealText>
-              </motion.span>
             </motion.h2>
 
             <motion.p 
@@ -891,20 +876,20 @@ const Index = () => {
             {[
               {
                 icon: Database,
-                title: "Information Overload",
-                description: "Multiple data sources create confusion instead of clarity",
+                title: "Data Fragmentation",
+                description: "Multiple disconnected systems create information silos, preventing unified strategic decision-making across brand portfolios.",
                 delay: 0.2
               },
               {
                 icon: Clock,
-                title: "Decision Delays",
-                description: "Critical choices get postponed while searching for insights",
+                title: "Insight Lag",
+                description: "Critical market insights arrive weeks too late, forcing reactive strategies instead of proactive competitive advantage.",
                 delay: 0.4
               },
               {
                 icon: Target,
-                title: "Missed Opportunities",
-                description: "Growth potential slips away in the complexity",
+                title: "Decision Uncertainty",
+                description: "Lack of integrated analytics creates uncertainty in strategic decisions, limiting confidence in budget allocation and market positioning.",
                 delay: 0.6
               }
             ].map((item, index) => (
