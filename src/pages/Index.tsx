@@ -32,11 +32,15 @@ import {
   ArrowUpRight,
   Sparkles,
   ChevronUp,
-  X
+  X,
+  FileText,
+  Calculator,
+  Mail,
+  Menu
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
 
 const Index = () => {
   const [activeModule, setActiveModule] = useState(0);
