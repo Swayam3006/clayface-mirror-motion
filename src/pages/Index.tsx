@@ -1070,7 +1070,7 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/5 to-slate-900/10 pointer-events-none" />
 
         {/* Container that creates the scroll area */}
-        <div className="relative">
+        <div className="relative" style={{ height: `${modules.length * 100}vh` }}>
           {/* Sticky container that displays the active module */}
           <div className="sticky top-0 z-10 flex flex-col justify-center min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 py-20">
             <div className="text-center mb-16 px-6">
@@ -1116,27 +1116,23 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Scroll trigger zones - these create the scrollable height but are positioned absolutely to not interfere */}
-          <div className="absolute top-0 left-0 w-full pointer-events-none">
-            {modules.map((_, idx) => (
-              <div
-                key={idx}
-                ref={(el) => (moduleRefs.current[idx] = el)}
-                data-index={idx}
-                className="h-screen opacity-0"
-                style={{ 
-                  position: 'absolute',
-                  top: `${idx * 100}vh`,
-                  width: '100%'
-                }}
-              >
-                {/* Hidden trigger zone */}
-              </div>
-            ))}
-          </div>
-          
-          {/* Spacer to create scroll height */}
-          <div style={{ height: `${modules.length * 100}vh` }} className="pointer-events-none" />
+          {/* Scroll trigger zones positioned absolutely */}
+          {modules.map((_, idx) => (
+            <div
+              key={idx}
+              ref={(el) => (moduleRefs.current[idx] = el)}
+              data-index={idx}
+              className="absolute opacity-0 pointer-events-none"
+              style={{ 
+                top: `${idx * 100}vh`,
+                left: 0,
+                width: '100%',
+                height: '100vh'
+              }}
+            >
+              {/* Hidden trigger zone */}
+            </div>
+          ))}
         </div>
       </section>
 
