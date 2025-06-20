@@ -849,14 +849,71 @@ const Index = () => {
             </motion.div>
             
             <motion.h2 
-              className="text-4xl md:text-6xl lg:text-7xl font-bold text-slate-900 mb-8 leading-tight"
+              className="text-4xl md:text-6xl lg:text-7xl font-normal text-slate-900 mb-8 leading-tight"
               initial={{ opacity: 0, y: 30 }}
               animate={problemInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <RevealText inView={problemInView} delay={0.6} className="block">
-                Brand Managers Are Drowning in Data—But Starving for Direction
-              </RevealText>
+              Brand Managers Are{" "}
+              <motion.span
+                className="relative inline-block"
+                initial={{ fontWeight: 400 }}
+                animate={problemInView ? { 
+                  fontWeight: 700,
+                  color: "#0f172a"
+                } : {}}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: 1.2,
+                  ease: "easeOut"
+                }}
+              >
+                <motion.span
+                  className="absolute inset-0 bg-gradient-to-r from-blue-100 to-blue-200 -z-10 rounded-lg"
+                  initial={{ scaleX: 0, opacity: 0 }}
+                  animate={problemInView ? { 
+                    scaleX: 1, 
+                    opacity: 0.3 
+                  } : {}}
+                  transition={{ 
+                    duration: 0.6, 
+                    delay: 1.4,
+                    ease: "easeOut"
+                  }}
+                  style={{ transformOrigin: "left" }}
+                />
+                Drowning in Data
+              </motion.span>
+              —But{" "}
+              <motion.span
+                className="relative inline-block"
+                initial={{ fontWeight: 400 }}
+                animate={problemInView ? { 
+                  fontWeight: 700,
+                  color: "#0f172a"
+                } : {}}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: 1.6,
+                  ease: "easeOut"
+                }}
+              >
+                <motion.span
+                  className="absolute inset-0 bg-gradient-to-r from-red-100 to-red-200 -z-10 rounded-lg"
+                  initial={{ scaleX: 0, opacity: 0 }}
+                  animate={problemInView ? { 
+                    scaleX: 1, 
+                    opacity: 0.3 
+                  } : {}}
+                  transition={{ 
+                    duration: 0.6, 
+                    delay: 1.8,
+                    ease: "easeOut"
+                  }}
+                  style={{ transformOrigin: "left" }}
+                />
+                Starving for Direction
+              </motion.span>
             </motion.h2>
 
             <motion.p 
