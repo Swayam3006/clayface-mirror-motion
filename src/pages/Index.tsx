@@ -604,7 +604,6 @@ const Index = () => {
             <RevealText inView={heroInView} delay={0.6}>
               From insight to impact
             </RevealText>
-            <br />
             <motion.span 
               className="text-blue-600 inline-block"
               initial={{ opacity: 0, y: 20 }}
