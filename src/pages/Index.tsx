@@ -1070,7 +1070,7 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/5 to-slate-900/10 pointer-events-none" />
 
         {/* Container that creates the scroll area - reduced height */}
-        <div className="relative" style={{ height: `${modules.length * 10}vh` }}>
+        <div className="relative">
           {/* Sticky container that displays the active module */}
           <div className="sticky top-0 z-10 flex flex-col justify-center min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 py-20">
             <div className="text-center mb-16 px-6">
