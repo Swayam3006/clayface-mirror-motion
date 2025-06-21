@@ -438,7 +438,7 @@ const Index = () => {
           style={{ width: progressWidth }}
         />
         
-        <div className="max-w-7xl mx-auto px-6 py-4">
+        <div className="max-w-9xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <motion.div 
               className="flex items-center"
