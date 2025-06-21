@@ -642,9 +642,9 @@ const Index = () => {
             className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 30 }}
             animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 3.0, delay: 1.0 }}
+            transition={{ duration: 0.6, delay: 1.0 }}
           >
-            <RevealText inView={heroInView} delay={2.6}>
+            <RevealText inView={heroInView} delay={2.3}>
               Your Strategic Command Center. Access a single source of truth, generate actionable insights instantly, 
               and make confident decisions backed by triangulated data across retail, panel, and internal sales.
             </RevealText>
