@@ -40,6 +40,13 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { 
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
 import { motion, useScroll, useTransform, useInView, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
 
 const Index = () => {
@@ -331,42 +338,42 @@ const Index = () => {
     }
   ];
 
-  // Helper component that renders the currently active module card
-  const ModuleShowcase: React.FC<{ module: typeof modules[number] }> = ({ module }) => {
+  // Helper component that renders a module card
+  const ModuleCard: React.FC<{ module: typeof modules[number] }> = ({ module }) => {
     const Icon = module.icon;
     const colors = getColorClasses(module.color);
 
     return (
-      <div className="grid md:grid-cols-2 gap-16 items-center p-8 max-w-7xl mx-auto transition-all duration-700 ease-out">
+      <div className="grid md:grid-cols-2 gap-16 items-center p-8 max-w-7xl mx-auto">
         {/* Module Info */}
         <motion.div 
-          className="space-y-8 transform transition-all duration-700 ease-out"
+          className="space-y-8"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <div className={`w-20 h-20 ${colors.bg} rounded-3xl flex items-center justify-center shadow-lg transition-all duration-300`}>
-            <Icon className={`w-10 h-10 ${colors.icon} transition-all duration-300`} />
+          <div className={`w-20 h-20 ${colors.bg} rounded-3xl flex items-center justify-center shadow-lg`}>
+            <Icon className={`w-10 h-10 ${colors.icon}`} />
           </div>
 
           <div>
-            <div className="text-sm text-blue-400 mb-3 font-medium tracking-wide uppercase transition-all duration-300">Module {module.id}</div>
-            <h3 className="text-4xl font-bold text-white mb-3 leading-tight transition-all duration-300">{module.title}</h3>
-            <p className="text-xl text-gray-300 mb-6 leading-relaxed transition-all duration-300">{module.subtitle}</p>
-            <p className="text-gray-400 leading-relaxed mb-8 text-lg transition-all duration-300">{module.description}</p>
+            <div className="text-sm text-blue-400 mb-3 font-medium tracking-wide uppercase">Module {module.id}</div>
+            <h3 className="text-4xl font-bold text-white mb-3 leading-tight">{module.title}</h3>
+            <p className="text-xl text-gray-300 mb-6 leading-relaxed">{module.subtitle}</p>
+            <p className="text-gray-400 leading-relaxed mb-8 text-lg">{module.description}</p>
           </div>
 
           <div className="space-y-4">
             {module.features.map((feature, idx) => (
               <motion.div 
                 key={idx} 
-                className="flex items-start gap-4 transition-all duration-300" 
+                className="flex items-start gap-4" 
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: idx * 0.1, duration: 0.5 }}
               >
-                <div className="w-3 h-3 bg-blue-500 rounded-full mt-2 flex-shrink-0 transition-all duration-300"></div>
-                <span className="text-gray-300 text-lg leading-relaxed transition-all duration-300">{feature}</span>
+                <div className="w-3 h-3 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                <span className="text-gray-300 text-lg leading-relaxed">{feature}</span>
               </motion.div>
             ))}
           </div>
@@ -375,22 +382,21 @@ const Index = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Button className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg font-medium rounded-full transition-all duration-300">
+            <Button className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg font-medium rounded-full">
               <Play className="w-5 h-5 mr-2" />
               View Demo
             </Button>
           </motion.div>
         </motion.div>
 
-        {/* Module Screenshot - Clean, Professional Layout */}
+        {/* Module Screenshot */}
         <motion.div 
-          className="relative transform transition-all duration-700 ease-out"
+          className="relative"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <div className="bg-white rounded-3xl shadow-2xl overflow-hidden transition-all duration-500">
-            {/* Clean browser header */}
+          <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
             <div className="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center space-x-3">
               <div className="w-3 h-3 bg-red-400 rounded-full"></div>
               <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
@@ -398,24 +404,20 @@ const Index = () => {
               <div className="ml-4 text-sm text-gray-500 font-medium">clayface.ai/dashboard</div>
             </div>
             
-            {/* Module image with improved contrast and clarity */}
             <div className="relative overflow-hidden">
               <img 
                 src={module.mockupImage} 
                 alt={`${module.title} Interface`} 
-                className="w-full h-auto transition-all duration-500 filter brightness-110 contrast-105" 
+                className="w-full h-auto filter brightness-110 contrast-105" 
                 style={{
                   filter: 'brightness(1.1) contrast(1.05) saturate(1.1)'
                 }}
-                key={module.id}
               />
               
-              {/* Subtle overlay for better aesthetics */}
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900/5 via-transparent to-transparent pointer-events-none"></div>
             </div>
           </div>
 
-          {/* Clean status indicators */}
           <motion.div 
             className="absolute -top-3 -right-3 bg-green-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg"
             animate={{ y: [0, -5, 0] }}
@@ -1064,75 +1066,62 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Interactive Product Modules – Sticky Scroll Showcase */}
-      <section id="modules" className="relative bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
+      {/* Interactive Product Modules – Carousel Implementation */}
+      <section id="modules" className="py-24 bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
         {/* Subtle gradient backdrop */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/5 to-slate-900/10 pointer-events-none" />
 
-        {/* Container that creates the scroll area - reduced height */}
-        <div className="relative">
-          {/* Sticky container that displays the active module */}
-          <div className="sticky top-0 z-10 flex flex-col justify-center min-h-screen bg-gradient-to-b from-gray-900 via-black to-gray-900 py-20">
-            <div className="text-center mb-16 px-6">
-              <motion.div 
-                className="inline-flex items-center gap-2 bg-blue-500/20 text-blue-300 px-6 py-3 rounded-full text-sm font-medium mb-10 border border-blue-500/30"
-                whileHover={{ scale: 1.05, borderColor: "rgba(59, 130, 246, 0.5)" }}
-              >
-                <Zap className="w-4 h-4" />
-                7 Powerful Modules
-              </motion.div>
-              
-              <h2 className="text-5xl md:text-7xl font-bold leading-tight mb-8">
-                <span className="block">Transform From</span>
-                <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
-                  Reactive To Proactive
-                </span>
-              </h2>
-              
-              <p className="text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-light">
-                Everything you need to make confident, data-driven decisions in real-time
-              </p>
-            </div>
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <motion.div 
+              className="inline-flex items-center gap-2 bg-blue-500/20 text-blue-300 px-6 py-3 rounded-full text-sm font-medium mb-10 border border-blue-500/30"
+              whileHover={{ scale: 1.05, borderColor: "rgba(59, 130, 246, 0.5)" }}
+            >
+              <Zap className="w-4 h-4" />
+              7 Powerful Modules
+            </motion.div>
+            
+            <h2 className="text-5xl md:text-7xl font-bold leading-tight mb-8">
+              <span className="block">Transform From</span>
+              <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
+                Reactive To Proactive
+              </span>
+            </h2>
+            
+            <p className="text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed font-light mb-12">
+              Everything you need to make confident, data-driven decisions in real-time
+            </p>
+          </div>
 
-            {/* Active module showcase */}
-            <div className="flex-1 flex items-center justify-center">
-              <ModuleShowcase module={modules[activeModule]} />
-            </div>
-
-            {/* Enhanced Module indicator dots */}
-            <div className="flex justify-center mt-12 space-x-3">
+          {/* Carousel Implementation */}
+          <div className="relative">
+            <Carousel className="w-full max-w-none" opts={{ align: "start", loop: true }}>
+              <CarouselContent className="-ml-4">
+                {modules.map((module, index) => (
+                  <CarouselItem key={module.id} className="pl-4 basis-full">
+                    <div className="min-h-[80vh] flex items-center justify-center">
+                      <ModuleCard module={module} />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              
+              {/* Custom Navigation */}
+              <CarouselPrevious className="left-4 bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white" />
+              <CarouselNext className="right-4 bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white" />
+            </Carousel>
+            
+            {/* Module indicators */}
+            <div className="flex justify-center mt-12 space-x-2">
               {modules.map((_, idx) => (
-                <motion.span
+                <div
                   key={idx}
-                  className={`transition-all duration-500 rounded-full cursor-pointer ${
-                    idx === activeModule 
-                      ? 'bg-blue-500 w-10 h-4 shadow-lg shadow-blue-500/50' 
-                      : 'bg-white/20 w-4 h-4 hover:bg-white/40'
-                  }`}
-                  whileHover={{ scale: 1.2 }}
-                  whileTap={{ scale: 0.9 }}
+                  className="w-2 h-2 bg-white/30 rounded-full"
                 />
               ))}
             </div>
           </div>
-
-          {/* Scroll trigger zones positioned absolutely with reduced spacing */}
-          {modules.map((_, idx) => (
-            <div
-              key={idx}
-              ref={(el) => (moduleRefs.current[idx] = el)}
-              data-index={idx}
-              className="absolute opacity-0 pointer-events-none"
-              style={{ 
-                top: `${idx * 50}vh`,
-                left: 0,
-                width: '100%',
-                height: '50vh'
-              }}
-            >
-              {/* Hidden trigger zone */}
-            </div>
-          ))}
         </div>
       </section>
 
