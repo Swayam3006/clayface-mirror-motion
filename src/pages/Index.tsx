@@ -644,7 +644,7 @@ const Index = () => {
             animate={heroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 1.0 }}
           >
-            <RevealText inView={heroInView} delay={0.5}>
+            <RevealText inView={heroInView} delay={2.6}>
               Your Strategic Command Center. Access a single source of truth, generate actionable insights instantly, 
               and make confident decisions backed by triangulated data across retail, panel, and internal sales.
             </RevealText>
