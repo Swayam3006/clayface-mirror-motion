@@ -150,7 +150,7 @@ const Index = () => {
     return (
       <span className={className}>
         {words.map((word, index) => (
-          <span key={index} className="inline-block overflow-hidden">
+          <span key={index} className="inline-block">
             <motion.span
               className="inline-block"
               initial={{ y: 100, opacity: 0 }}
@@ -604,6 +604,7 @@ const Index = () => {
             <RevealText inView={heroInView} delay={0.6}>
               From insight to impact
             </RevealText>
+            <br />
             <motion.span 
               className="text-blue-600 inline-block"
               initial={{ opacity: 0, y: 20 }}
