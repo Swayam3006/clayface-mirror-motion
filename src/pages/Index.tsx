@@ -1082,29 +1082,6 @@ const Index = () => {
               </AnimatePresence>
             </div>
             
-            {/* Manual Navigation Controls */}
-            <div className="absolute top-1/2 -translate-y-1/2 left-4">
-              <motion.button
-                onClick={() => setActiveModule((prev) => (prev - 1 + modules.length) % modules.length)}
-                className="w-12 h-12 bg-white/10 border border-white/20 text-white hover:bg-white/20 rounded-full flex items-center justify-center"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <ChevronRight className="w-6 h-6 rotate-180" />
-              </motion.button>
-            </div>
-            
-            <div className="absolute top-1/2 -translate-y-1/2 right-4">
-              <motion.button
-                onClick={() => setActiveModule((prev) => (prev + 1) % modules.length)}
-                className="w-12 h-12 bg-white/10 border border-white/20 text-white hover:bg-white/20 rounded-full flex items-center justify-center"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <ChevronRight className="w-6 h-6" />
-              </motion.button>
-            </div>
-            
             {/* Module indicators */}
             <div className="flex justify-center mt-12 space-x-2">
               {modules.map((_, idx) => (
