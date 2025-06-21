@@ -40,19 +40,10 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { 
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel';
 import { motion, useScroll, useTransform, useInView, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
 
 const Index = () => {
   const [activeModule, setActiveModule] = useState(0);
-  // Refs used for detecting when each module section scrolls into view
-  const moduleRefs = React.useRef<(HTMLDivElement | null)[]>([]);
   
   // Animation refs and scroll tracking
   const { scrollYProgress } = useScroll();
@@ -93,6 +84,15 @@ const Index = () => {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [mouseX, mouseY]);
+
+  // Auto carousel functionality
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveModule((prev) => (prev + 1) % modules.length);
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(interval);
+  }, []);
 
   // Custom counter animation component
   const AnimatedCounter: React.FC<{ 
@@ -207,34 +207,6 @@ const Index = () => {
       </motion.div>
     );
   };
-
-  // Register an IntersectionObserver to update `activeModule` based on scroll position
-  React.useEffect(() => {
-    const refs = moduleRefs.current;
-    if (!refs.length) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const idx = Number((entry.target as HTMLElement).dataset.index);
-            if (!Number.isNaN(idx)) {
-              setActiveModule(idx);
-            }
-          }
-        });
-      },
-      {
-        root: null,
-        threshold: 0.5, // Trigger when 50% of sentinel is visible
-        rootMargin: '-20% 0px -20% 0px', // Create a smaller trigger zone
-      }
-    );
-
-    refs.forEach((ref) => ref && observer.observe(ref));
-
-    return () => observer.disconnect();
-  }, []);
 
   const modules = [
     {
@@ -1066,7 +1038,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Interactive Product Modules – Carousel Implementation */}
+      {/* Interactive Product Modules – Automatic Carousel */}
       <section id="modules" className="py-24 bg-gradient-to-b from-gray-900 via-black to-gray-900 text-white">
         {/* Subtle gradient backdrop */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/5 to-slate-900/10 pointer-events-none" />
@@ -1094,30 +1066,55 @@ const Index = () => {
             </p>
           </div>
 
-          {/* Carousel Implementation */}
+          {/* Automatic Carousel Implementation */}
           <div className="relative">
-            <Carousel className="w-full max-w-none" opts={{ align: "start", loop: true }}>
-              <CarouselContent className="-ml-4">
-                {modules.map((module, index) => (
-                  <CarouselItem key={module.id} className="pl-4 basis-full">
-                    <div className="min-h-[80vh] flex items-center justify-center">
-                      <ModuleCard module={module} />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              
-              {/* Custom Navigation */}
-              <CarouselPrevious className="left-4 bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white" />
-              <CarouselNext className="right-4 bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white" />
-            </Carousel>
+            <div className="min-h-[80vh] flex items-center justify-center">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeModule}
+                  initial={{ opacity: 0, x: 100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -100 }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                >
+                  <ModuleCard module={modules[activeModule]} />
+                </motion.div>
+              </AnimatePresence>
+            </div>
+            
+            {/* Manual Navigation Controls */}
+            <div className="absolute top-1/2 -translate-y-1/2 left-4">
+              <motion.button
+                onClick={() => setActiveModule((prev) => (prev - 1 + modules.length) % modules.length)}
+                className="w-12 h-12 bg-white/10 border border-white/20 text-white hover:bg-white/20 rounded-full flex items-center justify-center"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <ChevronRight className="w-6 h-6 rotate-180" />
+              </motion.button>
+            </div>
+            
+            <div className="absolute top-1/2 -translate-y-1/2 right-4">
+              <motion.button
+                onClick={() => setActiveModule((prev) => (prev + 1) % modules.length)}
+                className="w-12 h-12 bg-white/10 border border-white/20 text-white hover:bg-white/20 rounded-full flex items-center justify-center"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <ChevronRight className="w-6 h-6" />
+              </motion.button>
+            </div>
             
             {/* Module indicators */}
             <div className="flex justify-center mt-12 space-x-2">
               {modules.map((_, idx) => (
-                <div
+                <motion.button
                   key={idx}
-                  className="w-2 h-2 bg-white/30 rounded-full"
+                  onClick={() => setActiveModule(idx)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    idx === activeModule ? 'bg-white scale-125' : 'bg-white/30'
+                  }`}
+                  whileHover={{ scale: 1.3 }}
                 />
               ))}
             </div>
