@@ -486,9 +486,13 @@ const Index = () => {
                 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Button className="bg-black text-white hover:bg-gray-800 text-sm font-medium px-6">
+                <Button 
+                  className="bg-black text-white hover:bg-gray-800 text-sm font-medium px-6"
+                  onClick={() => window.location.href = 'https://calendly.com/shahrukhmd/phyllo'}
+                >
                   Get started
                 </Button>
+
               </motion.div>
               <div className="md:hidden">
                 <motion.div whileHover={{ rotate: 90 }} whileTap={{ scale: 0.9 }}>
