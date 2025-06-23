@@ -1,6 +1,6 @@
 
 import React, { useRef } from 'react';
-import { motion, useInView, useTransform } from 'framer-motion';
+import { motion, useInView, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 
 interface HeroSectionProps {
@@ -9,39 +9,40 @@ interface HeroSectionProps {
   heroOpacity: any;
 }
 
-const RevealText: React.FC<{ 
-  children: string; 
-  inView: boolean; 
-  delay?: number;
-  className?: string;
-}> = ({ children, inView, delay = 0, className = "" }) => {
-  const words = children.split(' ');
-  
-  return (
-    <span className={className}>
-      {words.map((word, index) => (
-        <span key={index} className="inline-block">
-          <motion.span
-            className="inline-block"
-            initial={{ y: 100, opacity: 0 }}
-            animate={inView ? { y: 0, opacity: 1 } : {}}
-            transition={{
-              duration: 0.8,
-              delay: delay + (index * 0.1),
-              ease: [0.22, 1, 0.36, 1]
-            }}
-          >
-            {word}&nbsp;
-          </motion.span>
-        </span>
-      ))}
-    </span>
-  );
-};
-
 const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, heroOpacity }) => {
   const heroRef = useRef(null);
   const heroInView = useInView(heroRef, { once: true, amount: 0.3 });
+
+  // Advanced Text Reveal Component
+  const RevealText: React.FC<{ 
+    children: string; 
+    inView: boolean; 
+    delay?: number;
+    className?: string;
+  }> = ({ children, inView, delay = 0, className = "" }) => {
+    const words = children.split(' ');
+    
+    return (
+      <span className={className}>
+        {words.map((word, index) => (
+          <span key={index} className="inline-block">
+            <motion.span
+              className="inline-block"
+              initial={{ y: 100, opacity: 0 }}
+              animate={inView ? { y: 0, opacity: 1 } : {}}
+              transition={{
+                duration: 0.8,
+                delay: delay + (index * 0.1),
+                ease: [0.22, 1, 0.36, 1]
+              }}
+            >
+              {word}&nbsp;
+            </motion.span>
+          </span>
+        ))}
+      </span>
+    );
+  };
 
   return (
     <section className="pt-48 pb-20 px-6 relative overflow-hidden" ref={heroRef}>
@@ -199,7 +200,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
             }}
             whileTap={{ scale: 0.95 }}
           >
-            <Button size="lg" className="bg-black text-white hover:bg-gray-800 px-10 py-5 text-lg font-medium rounded-full">
+            <Button 
+              size="lg" 
+              className="bg-black text-white hover:bg-gray-800 px-10 py-5 text-lg font-medium rounded-full"
+              onClick={() => window.open('https://calendly.com/shahrukhmd/phyllo', '_self')}
+            >
               Talk to us
             </Button>
           </motion.div>

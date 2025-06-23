@@ -7,7 +7,12 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           <div className="md:col-span-2">
-            <div className="mb-6">
+            <div className="mb-6 flex items-center">
+              <img 
+                src="/lovable-uploads/3382841d-c916-484e-9546-4986e750f57c.png"
+                alt="Clayface Logo"
+                className="h-8 w-8 mr-3"
+              />
               <span className="text-black font-bold text-xl">clayface</span>
             </div>
             <p className="text-gray-600 mb-6 max-w-sm">

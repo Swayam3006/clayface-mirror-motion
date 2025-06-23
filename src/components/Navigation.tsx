@@ -29,17 +29,16 @@ const Navigation: React.FC<NavigationProps> = ({ progressWidth }) => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <motion.span 
-              className="text-black font-bold text-xl"
+            <motion.img 
+              src="/lovable-uploads/3382841d-c916-484e-9546-4986e750f57c.png"
+              alt="Clayface Logo"
+              className="h-8 w-8"
               whileHover={{ 
                 scale: 1.1,
                 rotate: [0, -10, 10, -10, 0],
                 transition: { duration: 0.5 }
               }}
-              style={{ fontSize: "25px" }}
-            >
-              clayface
-            </motion.span>
+            />
           </motion.div>
           
           <div className="hidden md:flex items-center space-x-8">
@@ -70,15 +69,12 @@ const Navigation: React.FC<NavigationProps> = ({ progressWidth }) => {
               }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button className="bg-black text-white hover:bg-gray-800 text-sm font-medium px-6">
-                <a 
-                  href="https://calendly.com/shahrukhmd/phyllo" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                >
+              <Button 
+                className="bg-black text-white hover:bg-gray-800 text-sm font-medium px-6"
+                onClick={() => window.open('https://calendly.com/shahrukhmd/phyllo', '_self')}
+              >
                 Get started
-                </a>
-                </Button>
+              </Button>
             </motion.div>
             <div className="md:hidden">
               <motion.div whileHover={{ rotate: 90 }} whileTap={{ scale: 0.9 }}>
