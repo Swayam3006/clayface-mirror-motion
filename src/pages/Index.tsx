@@ -660,9 +660,13 @@ const Index = () => {
               }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button size="lg" className="bg-black text-white hover:bg-gray-800 px-10 py-5 text-lg font-medium rounded-full">
+              <Button 
+                className="bg-black text-white hover:bg-gray-800 px-10 py-5 text-lg font-medium rounded-full"
+                onClick={() => window.location.href = 'https://calendly.com/shahrukhmd/phyllo'}
+              >
                 Talk to us
               </Button>
+
             </motion.div>
           </motion.div>
 
@@ -1458,16 +1462,16 @@ const Index = () => {
               }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100 mt-8 px-10 py-5 text-lg font-medium rounded-full">
+              <Button 
+                className="bg-white text-gray-900 hover:bg-gray-100 mt-8 px-10 py-5 text-lg font-medium rounded-full inline-flex items-center"
+                onClick={() => window.location.href = 'https://calendly.com/shahrukhmd/phyllo'}
+              >
                 Talk to us
-                <motion.div
-                  className="ml-2"
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
+                <motion.div className="ml-2">
                   <ArrowRight className="w-4 h-4" />
                 </motion.div>
               </Button>
+
             </motion.div>
           </motion.div>
         </div>
