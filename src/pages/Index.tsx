@@ -459,7 +459,7 @@ const Index = () => {
             </motion.div>
             
             <div className="hidden md:flex items-center space-x-8">
-              {['Product', 'Modules', 'Pricing', 'Company'].map((item, index) => (
+              {['Platform', 'Solutions', 'Resources', 'About'].map((item, index) => (
                 <motion.a 
                   key={item}
                   href={`#${item.toLowerCase()}`} 
@@ -479,14 +479,6 @@ const Index = () => {
             </div>
             
             <div className="flex items-center space-x-4">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Button variant="ghost" className="text-black hover:bg-gray-100 text-sm font-medium">
-                  Sign in
-                </Button>
-              </motion.div>
               <motion.div
                 whileHover={{ 
                   scale: 1.05,
@@ -1491,7 +1483,7 @@ const Index = () => {
             </div>
             
             <div>
-              <h4 className="text-black font-semibold mb-4">Product</h4>
+              <h4 className="text-black font-semibold mb-4">Platform</h4>
               <ul className="space-y-3 text-gray-600">
                 <li><a href="#" className="hover:text-black transition-colors">Smart Alerts</a></li>
                 <li><a href="#" className="hover:text-black transition-colors">Report Auto-Gen</a></li>
@@ -1501,12 +1493,12 @@ const Index = () => {
             </div>
             
             <div>
-              <h4 className="text-black font-semibold mb-4">Company</h4>
+              <h4 className="text-black font-semibold mb-4">Solutions</h4>
               <ul className="space-y-3 text-gray-600">
-                <li><a href="#" className="hover:text-black transition-colors">About</a></li>
-                <li><a href="#" className="hover:text-black transition-colors">Blog</a></li>
-                <li><a href="#" className="hover:text-black transition-colors">Careers</a></li>
-                <li><a href="#" className="hover:text-black transition-colors">Contact</a></li>
+                <li><a href="#" className="hover:text-black transition-colors">Brand Management</a></li>
+                <li><a href="#" className="hover:text-black transition-colors">Market Intelligence</a></li>
+                <li><a href="#" className="hover:text-black transition-colors">Competitive Analysis</a></li>
+                <li><a href="#" className="hover:text-black transition-colors">Performance Tracking</a></li>
               </ul>
             </div>
             
