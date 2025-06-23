@@ -1387,77 +1387,6 @@ const Index = () => {
               </Card>
             </motion.div>
           </div>
-
-          {/* Enhanced ROI Calculator */}
-          <motion.div 
-            className="mt-16 bg-gradient-to-r from-green-600 to-blue-600 text-white rounded-3xl p-8 md:p-12 text-center"
-            initial={{ opacity: 0, y: 60, scale: 0.9 }}
-            animate={statsInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-            transition={{ duration: 0.8, delay: 1.0 }}
-            whileHover={{ 
-              scale: 1.02,
-              boxShadow: "0 25px 50px rgba(0,0,0,0.2)"
-            }}
-          >
-            <motion.h3 
-              className="text-3xl md:text-4xl font-bold mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={statsInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 1.2 }}
-            >
-              Calculate Your ROI
-            </motion.h3>
-            <motion.p 
-              className="text-xl opacity-90 mb-8 max-w-2xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              animate={statsInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 1.4 }}
-            >
-              See how much Clayface can save your organization in the first year
-            </motion.p>
-            <div className="grid md:grid-cols-3 gap-8 text-center">
-              {[
-                { value: 2.4, suffix: "M", label: "Average annual savings", prefix: "$" },
-                { value: 85, suffix: "%", label: "Faster decision making", prefix: "" },
-                { value: 12, suffix: "x", label: "ROI in first year", prefix: "" }
-              ].map((stat, index) => (
-                <motion.div 
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={statsInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.6, delay: 1.6 + (index * 0.2) }}
-                  whileHover={{ scale: 1.1 }}
-                >
-                  <div className="text-5xl font-bold mb-2">
-                    <AnimatedCounter 
-                      from={0} 
-                      to={stat.value} 
-                      duration={2.5} 
-                      suffix={stat.suffix}
-                      prefix={stat.prefix}
-                      inView={statsInView} 
-                    />
-                  </div>
-                  <div className="text-lg opacity-80">{stat.label}</div>
-                </motion.div>
-              ))}
-            </div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={statsInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 2.2 }}
-              whileHover={{ 
-                scale: 1.05,
-                boxShadow: "0 15px 35px rgba(255,255,255,0.2)"
-              }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100 mt-8 px-10 py-5 text-lg font-semibold rounded-full">
-                <Calculator className="w-5 h-5 mr-2" />
-                Talk to us
-              </Button>
-            </motion.div>
-          </motion.div>
         </div>
       </section>
 
@@ -1533,7 +1462,7 @@ const Index = () => {
               }}
               whileTap={{ scale: 0.95 }}
             >
-              <Button size="lg" className="bg-white text-black hover:bg-gray-200 px-10 py-5 text-lg font-medium rounded-full">
+              <Button size="lg" className="bg-white text-gray-900 hover:bg-gray-100 mt-8 px-10 py-5 text-lg font-medium rounded-full">
                 Talk to us
                 <motion.div
                   className="ml-2"
