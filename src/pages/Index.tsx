@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect } from 'react';
 import { 
   ChevronRight, 
@@ -369,7 +370,7 @@ const Index = () => {
           </motion.div>
         </motion.div>
 
-        {/* Module Screenshot with Smooth Transition */}
+        {/* Module Screenshot with Smooth Crossfade Transition */}
         <motion.div 
           className="relative"
           initial={{ opacity: 0, x: 50 }}
@@ -384,7 +385,7 @@ const Index = () => {
               <div className="ml-4 text-sm text-gray-500 font-medium">clayface.ai/dashboard</div>
             </div>
             
-            <div className="relative overflow-hidden">
+            <div className="relative overflow-hidden bg-gray-100">
               <AnimatePresence mode="wait">
                 <motion.img
                   key={module.id}
@@ -398,7 +399,7 @@ const Index = () => {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ 
-                    duration: 0.5,
+                    duration: 0.6,
                     ease: "easeInOut"
                   }}
                 />
@@ -444,7 +445,11 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden">
       <Navigation progressWidth={progressWidth} />
-      <HeroSection />
+      <HeroSection 
+        heroParallaxY={heroParallaxY}
+        heroScale={heroScale}
+        heroOpacity={heroOpacity}
+      />
       <ProblemSection />
 
       {/* Professional Global Crisis Section */}
