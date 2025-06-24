@@ -30,15 +30,16 @@ const Navigation: React.FC<NavigationProps> = ({ progressWidth }) => {
             whileTap={{ scale: 0.95 }}
           >
             <motion.img 
-              src="/lovable-uploads/3382841d-c916-484e-9546-4986e750f57c.png"
+              src="/lovable-uploads/clayface-logo.png"
               alt="Clayface Logo"
-              className="h-8 w-8"
+              className="h-8 w-auto"  // use w-auto to keep proper aspect ratio
               whileHover={{ 
                 scale: 1.1,
                 rotate: [0, -10, 10, -10, 0],
                 transition: { duration: 0.5 }
               }}
             />
+
           </motion.div>
           
           <div className="hidden md:flex items-center space-x-8">
