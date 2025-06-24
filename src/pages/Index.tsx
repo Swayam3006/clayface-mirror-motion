@@ -41,6 +41,11 @@ import {
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { motion, useScroll, useTransform, useInView, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
+import Navigation from '@/components/Navigation';
+import HeroSection from '@/components/HeroSection';
+import ProblemSection from '@/components/ProblemSection';
+import StatsSection from '@/components/StatsSection';
+import Footer from '@/components/Footer';
 
 const Index = () => {
   const [activeModule, setActiveModule] = useState(0);
@@ -354,14 +359,17 @@ const Index = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Button className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg font-medium rounded-full">
+            <Button 
+              className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg font-medium rounded-full"
+              onClick={() => window.location.href = 'https://calendly.com/shahrukhmd/phyllo'}
+            >
               <Play className="w-5 h-5 mr-2" />
               View Demo
             </Button>
           </motion.div>
         </motion.div>
 
-        {/* Module Screenshot */}
+        {/* Module Screenshot with Smooth Transition */}
         <motion.div 
           className="relative"
           initial={{ opacity: 0, x: 50 }}
@@ -377,14 +385,24 @@ const Index = () => {
             </div>
             
             <div className="relative overflow-hidden">
-              <img 
-                src={module.mockupImage} 
-                alt={`${module.title} Interface`} 
-                className="w-full h-auto filter brightness-110 contrast-105" 
-                style={{
-                  filter: 'brightness(1.1) contrast(1.05) saturate(1.1)'
-                }}
-              />
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={module.id}
+                  src={module.mockupImage} 
+                  alt={`${module.title} Interface`} 
+                  className="w-full h-auto filter brightness-110 contrast-105"
+                  style={{
+                    filter: 'brightness(1.1) contrast(1.05) saturate(1.1)'
+                  }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ 
+                    duration: 0.5,
+                    ease: "easeInOut"
+                  }}
+                />
+              </AnimatePresence>
               
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900/5 via-transparent to-transparent pointer-events-none"></div>
             </div>
@@ -425,543 +443,9 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden">
-      {/* Navigation */}
-      <motion.nav 
-        className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100"
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        {/* Scroll Progress Indicator */}
-        <motion.div 
-          className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500"
-          style={{ width: progressWidth }}
-        />
-        
-        <div className="max-w-9xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <motion.div 
-              className="flex items-center"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <motion.span 
-                className="text-black font-bold text-xl"
-                whileHover={{ 
-                  scale: 1.1,
-                  rotate: [0, -10, 10, -10, 0],
-                  transition: { duration: 0.5 }
-                }}
-                style={{ fontSize: "25px" }}
-              >
-                clayface
-              </motion.span>
-            </motion.div>
-            
-            <div className="hidden md:flex items-center space-x-8">
-              {['Platform', 'Solutions', 'Resources', 'About'].map((item, index) => (
-                <motion.a 
-                  key={item}
-                  href={`#${item.toLowerCase()}`} 
-                  className="text-gray-600 hover:text-black transition-colors text-sm font-medium"
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 * index, duration: 0.5 }}
-                  whileHover={{ 
-                    scale: 1.1,
-                    color: "#000",
-                    transition: { duration: 0.2 }
-                  }}
-                >
-                  {item}
-                </motion.a>
-              ))}
-            </div>
-            
-            <div className="flex items-center space-x-4">
-              <motion.div
-                whileHover={{ 
-                  scale: 1.05,
-                  boxShadow: "0 10px 25px rgba(0,0,0,0.1)"
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Button 
-                  className="bg-black text-white hover:bg-gray-800 text-sm font-medium px-6"
-                  onClick={() => window.location.href = 'https://calendly.com/shahrukhmd/phyllo'}
-                >
-                  Get started
-                </Button>
-
-              </motion.div>
-              <div className="md:hidden">
-                <motion.div whileHover={{ rotate: 90 }} whileTap={{ scale: 0.9 }}>
-                  <Menu className="w-6 h-6" />
-                </motion.div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </motion.nav>
-
-      {/* Enhanced Hero Section with Advanced Parallax */}
-      <section className="pt-48 pb-20 px-6 relative overflow-hidden" ref={heroRef}>
-        {/* Advanced Parallax Background */}
-        <motion.div 
-          className="absolute inset-0 -z-10"
-          style={{ y: heroParallaxY }}
-        >
-          {/* Floating gradient orbs */}
-          <motion.div 
-            className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-r from-blue-200/30 to-purple-200/30 rounded-full blur-3xl"
-            animate={{ 
-              x: [0, 100, 0],
-              y: [0, -50, 0],
-              scale: [1, 1.2, 1],
-              rotate: [0, 180, 360]
-            }}
-            transition={{ 
-              duration: 20,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          <motion.div 
-            className="absolute bottom-20 right-10 w-80 h-80 bg-gradient-to-r from-indigo-200/30 to-pink-200/30 rounded-full blur-3xl"
-            animate={{ 
-              x: [0, -80, 0],
-              y: [0, 60, 0],
-              scale: [1, 0.8, 1],
-              rotate: [360, 180, 0]
-            }}
-            transition={{ 
-              duration: 25,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 5
-            }}
-          />
-          <motion.div 
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-cyan-200/20 to-blue-200/20 rounded-full blur-3xl"
-            animate={{ 
-              scale: [1, 1.5, 1],
-              rotate: [0, 360],
-              opacity: [0.3, 0.6, 0.3]
-            }}
-            transition={{ 
-              duration: 15,
-              repeat: Infinity,
-              ease: "linear"
-            }}
-          />
-        </motion.div>
-
-        <motion.div 
-          className="max-w-6xl mx-auto text-center relative z-10"
-          style={{ 
-            scale: heroScale,
-            opacity: heroOpacity 
-          }}
-        >
-          <motion.div 
-            className="inline-block bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-8 relative"
-            initial={{ scale: 0, opacity: 0 }}
-            animate={heroInView ? { scale: 1, opacity: 1 } : {}}
-            transition={{ 
-              duration: 0.6, 
-              ease: "backOut",
-              delay: 0.2 
-            }}
-            whileHover={{ 
-              scale: 1.05,
-              boxShadow: "0 5px 15px rgba(59, 130, 246, 0.3)"
-            }}
-          >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full"
-              animate={{ 
-                scale: [1, 1.1, 1],
-                opacity: [0.5, 0.8, 0.5]
-              }}
-              transition={{ 
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-            Decision Intelligence Platform for CPG Brand Managers
-          </motion.div>
-          
-          <motion.h1 
-            className="text-5xl md:text-7xl font-bold mb-8 leading-tight tracking-tight"
-            initial={{ opacity: 0, y: 50 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <RevealText inView={heroInView} delay={0.6}>
-              From insight to impact
-            </RevealText>
-            <br />
-            <motion.span 
-              className="text-blue-600 inline-block"
-              initial={{ opacity: 0, y: 20 }}
-              animate={heroInView ? { 
-                opacity: 1, 
-                y: 0,
-                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-              } : {
-                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-              }}
-              transition={{ 
-                opacity: { duration: 0.6, delay: 0.8 },
-                y: { duration: 0.6, delay: 0.8 },
-                backgroundPosition: {
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }
-              }}
-              style={{
-                background: "linear-gradient(45deg, #2563eb, #7c3aed, #ec4899)",
-                backgroundSize: "200% 200%",
-                backgroundClip: "text",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent"
-              }}
-            >
-              <RevealText inView={heroInView} delay={1.0}>
-                in minutes, not months
-              </RevealText>
-            </motion.span>
-          </motion.h1>
-          
-          <motion.p 
-            className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 30 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 1.0 }}
-          >
-            <RevealText inView={heroInView} delay={1.8}>
-              Your Strategic Command Center. Access a single source of truth, generate actionable insights instantly, 
-              and make confident decisions backed by triangulated data across retail, panel, and internal sales.
-            </RevealText>
-          </motion.p>
-          
-          <motion.div 
-            className="flex justify-center items-center mb-20"
-            initial={{ opacity: 0, y: 40 }}
-            animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 1.2 }}
-          >
-            <motion.div
-              whileHover={{ 
-                scale: 1.05,
-                boxShadow: "0 15px 35px rgba(0,0,0,0.15)"
-              }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Button 
-                className="bg-black text-white hover:bg-gray-800 px-10 py-5 text-lg font-medium rounded-full"
-                onClick={() => window.location.href = 'https://calendly.com/shahrukhmd/phyllo'}
-              >
-                Talk to us
-              </Button>
-
-            </motion.div>
-          </motion.div>
-
-          {/* Enhanced Product Preview with Real Dashboard */}
-          <motion.div 
-            className="relative"
-            initial={{ opacity: 0, y: 60, scale: 0.9 }}
-            animate={heroInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-            transition={{ duration: 0.8, delay: 1.4, ease: "easeOut" }}
-          >
-            <motion.div 
-              className="bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"
-              whileHover={{ 
-                scale: 1.02,
-                boxShadow: "0 25px 50px rgba(0,0,0,0.15)"
-              }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center space-x-2">
-                <motion.div 
-                  className="w-3 h-3 bg-red-500 rounded-full"
-                  whileHover={{ scale: 1.3 }}
-                ></motion.div>
-                <motion.div 
-                  className="w-3 h-3 bg-yellow-500 rounded-full"
-                  whileHover={{ scale: 1.3 }}
-                ></motion.div>
-                <motion.div 
-                  className="w-3 h-3 bg-green-500 rounded-full"
-                  whileHover={{ scale: 1.3 }}
-                ></motion.div>
-                <div className="ml-4 text-sm text-gray-500">clayface.com/dashboard</div>
-              </div>
-              <div className="relative">
-                <img 
-                  src="/lovable-uploads/5cd2d046-4001-44da-aa5e-03b344aaa2c5.png" 
-                  alt="Clayface Dashboard Preview" 
-                  className="w-full h-auto"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-transparent"></div>
-              </div>
-            </motion.div>
-            
-            {/* Enhanced Floating elements */}
-            <motion.div 
-              className="absolute -top-4 -right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium"
-              animate={{ 
-                y: [0, -10, 0],
-                rotate: [0, 5, -5, 0]
-              }}
-              transition={{ 
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              whileHover={{ scale: 1.1 }}
-            >
-              +2.3% Market Share
-            </motion.div>
-            <motion.div 
-              className="absolute -bottom-4 -left-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium"
-              animate={{ 
-                y: [0, 10, 0],
-                rotate: [0, -5, 5, 0]
-              }}
-              transition={{ 
-                duration: 2.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 0.5
-              }}
-              whileHover={{ scale: 1.1 }}
-            >
-              Real-time alerts
-            </motion.div>
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* Enhanced Problem Section - UPDATED VERSION */}
-      <section className="pt-32 pb-24 px-6 bg-gradient-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden" ref={problemRef}>
-        {/* Advanced Parallax Background */}
-        <motion.div 
-          className="absolute inset-0 opacity-30"
-          style={{
-            background: `
-              radial-gradient(circle at 20% 50%, rgb(148, 163, 184, 0.1) 0%, transparent 50%),
-              radial-gradient(circle at 80% 20%, rgb(100, 116, 139, 0.1) 0%, transparent 50%),
-              radial-gradient(circle at 40% 80%, rgb(71, 85, 105, 0.1) 0%, transparent 50%)
-            `
-          }}
-        />
-        
-        {/* Floating Elements */}
-        <motion.div 
-          className="absolute top-20 left-10 w-20 h-20 border border-slate-200 rounded-full opacity-20"
-          animate={{ 
-            rotate: 360,
-            scale: [1, 1.1, 1]
-          }}
-          transition={{ 
-            rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-            scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-          }}
-        />
-        
-        <motion.div 
-          className="absolute top-32 right-20 w-16 h-16 bg-slate-100 rounded-lg opacity-20"
-          animate={{ 
-            y: [-10, 10, -10],
-            rotate: [0, 5, -5, 0]
-          }}
-          transition={{ 
-            duration: 6, 
-            repeat: Infinity, 
-            ease: "easeInOut" 
-          }}
-        />
-        
-        <motion.div 
-          className="absolute bottom-20 left-1/4 w-12 h-12 border-2 border-slate-300 rounded-full opacity-20"
-          animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.2, 0.4, 0.2]
-          }}
-          transition={{ 
-            duration: 3, 
-            repeat: Infinity, 
-            ease: "easeInOut" 
-          }}
-        />
-
-        <div className="max-w-7xl mx-auto relative z-10">
-          <motion.div 
-            className="text-center mb-20"
-            initial={{ opacity: 0, y: 50 }}
-            animate={problemInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            {/* Professional Badge */}
-            <motion.div 
-              className="inline-flex items-center gap-3 bg-slate-100 text-slate-700 px-6 py-3 rounded-full text-sm font-medium mb-8 border border-slate-200 shadow-sm"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={problemInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <motion.div 
-                className="flex items-center justify-center w-5 h-5 bg-slate-300 rounded-full"
-                animate={problemInView ? { rotate: 360 } : {}}
-                transition={{ duration: 1.5, delay: 0.8, ease: "backOut" }}
-              >
-                <AlertTriangle className="w-3 h-3 text-slate-600" />
-              </motion.div>
-              The Hidden Cost of Complexity
-            </motion.div>
-            
-            <motion.h2 
-              className="text-4xl md:text-6xl lg:text-7xl font-normal text-slate-900 mb-8 leading-tight"
-              initial={{ opacity: 0, y: 30 }}
-              animate={problemInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              Brand Managers Are{" "}
-              <motion.span
-                className="relative inline-block"
-                initial={{ fontWeight: 400 }}
-                animate={problemInView ? { 
-                  fontWeight: 700,
-                  color: "#0f172a"
-                } : {}}
-                transition={{ 
-                  duration: 0.8, 
-                  delay: 1.2,
-                  ease: "easeOut"
-                }}
-              >
-                <motion.span
-                  className="absolute inset-0 bg-gradient-to-r from-blue-100 to-blue-200 -z-10 rounded-lg"
-                  initial={{ scaleX: 0, opacity: 0 }}
-                  animate={problemInView ? { 
-                    scaleX: 1, 
-                    opacity: 0.3 
-                  } : {}}
-                  transition={{ 
-                    duration: 0.6, 
-                    delay: 1.4,
-                    ease: "easeOut"
-                  }}
-                  style={{ transformOrigin: "left" }}
-                />
-                Drowning in Data
-              </motion.span>
-              —But{" "}
-              <motion.span
-                className="relative inline-block"
-                initial={{ fontWeight: 400 }}
-                animate={problemInView ? { 
-                  fontWeight: 700,
-                  color: "#0f172a"
-                } : {}}
-                transition={{ 
-                  duration: 0.8, 
-                  delay: 1.6,
-                  ease: "easeOut"
-                }}
-              >
-                <motion.span
-                  className="absolute inset-0 bg-gradient-to-r from-red-100 to-red-200 -z-10 rounded-lg"
-                  initial={{ scaleX: 0, opacity: 0 }}
-                  animate={problemInView ? { 
-                    scaleX: 1, 
-                    opacity: 0.3 
-                  } : {}}
-                  transition={{ 
-                    duration: 0.6, 
-                    delay: 1.8,
-                    ease: "easeOut"
-                  }}
-                  style={{ transformOrigin: "left" }}
-                />
-                Starving for Direction
-              </motion.span>
-            </motion.h2>
-
-            <motion.p 
-              className="text-xl md:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={problemInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 1.0 }}
-            >
-              <RevealText inView={problemInView} delay={1.2}>
-                Despite having access to comprehensive dashboards and detailed reports, most brand managers struggle to extract actionable insights when critical decisions need to be made. This leads to delayed strategic initiatives, reliance on intuition over data, and missed growth opportunities.
-              </RevealText>
-            </motion.p>
-          </motion.div>
-
-          {/* Problem Grid */}
-          <div className="grid md:grid-cols-3 gap-8 mb-20">
-            {[
-              {
-                icon: Database,
-                title: "Data Fragmentation",
-                description: "Multiple disconnected systems create information silos, preventing unified strategic decision-making across brand portfolios.",
-                delay: 0.2
-              },
-              {
-                icon: Clock,
-                title: "Insight Lag",
-                description: "Critical market insights arrive weeks too late, forcing reactive strategies instead of proactive competitive advantage.",
-                delay: 0.4
-              },
-              {
-                icon: Target,
-                title: "Decision Uncertainty",
-                description: "Lack of integrated analytics creates uncertainty in strategic decisions, limiting confidence in budget allocation and market positioning.",
-                delay: 0.6
-              }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                className="group bg-white/70 backdrop-blur-sm border border-slate-200 rounded-2xl p-8 hover:shadow-xl transition-all duration-300"
-                initial={{ opacity: 0, y: 30 }}
-                animate={problemInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: item.delay }}
-                whileHover={{ y: -5, scale: 1.02 }}
-              >
-                <div className="flex items-center justify-center w-16 h-16 bg-slate-100 rounded-2xl mb-6 group-hover:bg-slate-200 transition-colors">
-                  <item.icon className="w-8 h-8 text-slate-600" />
-                </div>
-                <h3 className="text-xl font-semibold text-slate-900 mb-4">{item.title}</h3>
-                <p className="text-slate-600 leading-relaxed">{item.description}</p>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Call to Action */}
-          <motion.div 
-            className="text-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={problemInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            <p className="text-lg text-slate-600 mb-8">
-              There has to be a better way to navigate the complexity.
-            </p>
-            <Button 
-              size="lg" 
-              className="bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              Discover the Solution
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-          </motion.div>
-        </div>
-      </section>
+      <Navigation progressWidth={progressWidth} />
+      <HeroSection />
+      <ProblemSection />
 
       {/* Professional Global Crisis Section */}
       <section className="pt-32 pb-24 px-6 bg-slate-900 text-white relative overflow-hidden">
@@ -1031,7 +515,11 @@ const Index = () => {
             <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
               Join industry leaders who've revolutionized their strategic decision-making with Clayface
             </p>
-            <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100 px-8 py-4 text-lg font-semibold">
+            <Button 
+              size="lg" 
+              className="bg-white text-slate-900 hover:bg-slate-100 px-8 py-4 text-lg font-semibold"
+              onClick={() => window.location.href = 'https://calendly.com/shahrukhmd/phyllo'}
+            >
               Discover the Solution
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
@@ -1100,295 +588,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Completely Redesigned Stats Section */}
-      <section className="pt-32 pb-24 px-6 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 relative overflow-hidden" ref={statsRef}>
-        <motion.div 
-          className="absolute inset-0 opacity-40"
-          animate={{ 
-            background: [
-              "linear-gradient(45deg, #dbeafe, #e0e7ff, #f3e8ff)",
-              "linear-gradient(45deg, #e0e7ff, #f3e8ff, #dbeafe)",
-              "linear-gradient(45deg, #f3e8ff, #dbeafe, #e0e7ff)"
-            ]
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        ></motion.div>
-        
-        <div className="max-w-7xl mx-auto relative">
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 60 }}
-            animate={statsInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.div 
-              className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-8"
-              initial={{ scale: 0, opacity: 0 }}
-              animate={statsInView ? { scale: 1, opacity: 1 } : {}}
-              transition={{ duration: 0.6, delay: 0.2, ease: "backOut" }}
-              whileHover={{ 
-                scale: 1.05,
-                boxShadow: "0 5px 15px rgba(34, 197, 94, 0.3)"
-              }}
-            >
-              <motion.div
-                animate={{ rotate: [0, 360] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-              >
-                <Target className="w-4 h-4" />
-              </motion.div>
-              Proven Results
-            </motion.div>
-            
-            <motion.h2 
-              className="text-5xl md:text-6xl font-bold text-black mb-8 leading-tight"
-              initial={{ opacity: 0, y: 40 }}
-              animate={statsInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <motion.span
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={statsInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.6, delay: 0.6, ease: "backOut" }}
-              >
-                The Impact Is
-              </motion.span>
-              <br />
-              <motion.span 
-                className="bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={statsInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.6, delay: 0.8 }}
-              >
-                Immediate
-              </motion.span>
-            </motion.h2>
-            
-            <motion.p 
-              className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: 30 }}
-              animate={statsInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 1.0 }}
-            >
-              See how Clayface transforms CPG brand management from the first week
-            </motion.p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Stat 1 */}
-            <motion.div
-              initial={{ opacity: 0, y: 80, rotateX: -15 }}
-              animate={statsInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              whileHover={{ 
-                y: -10,
-                rotateX: 5,
-                transition: { duration: 0.3 }
-              }}
-            >
-              <Card className="relative overflow-hidden border border-slate-200 shadow-xl bg-white group hover:shadow-2xl transition-all duration-300 h-full">
-                <motion.div 
-                  className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-500 to-emerald-500"
-                  initial={{ scaleX: 0 }}
-                  animate={statsInView ? { scaleX: 1 } : {}}
-                  transition={{ duration: 1, delay: 0.4 }}
-                ></motion.div>
-                <CardContent className="p-8 text-center">
-                  <motion.div 
-                    className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform"
-                    whileHover={{ 
-                      rotate: [0, -10, 10, -10, 0],
-                      scale: 1.2
-                    }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <Brain className="w-8 h-8 text-green-600" />
-                  </motion.div>
-                  <motion.div 
-                    className="text-4xl font-bold text-black mb-2 group-hover:text-green-600 transition-colors"
-                    initial={{ scale: 0 }}
-                    animate={statsInView ? { scale: 1 } : {}}
-                    transition={{ duration: 0.6, delay: 0.6, ease: "backOut" }}
-                  >
-                    <AnimatedCounter from={0} to={2} duration={2} suffix="-3 weeks" inView={statsInView} />
-                  </motion.div>
-                  <div className="text-gray-600 font-medium mb-4">Saved per QBR</div>
-                  <div className="text-sm text-gray-500 leading-relaxed">
-                    Automated report generation eliminates manual deck creation
-                  </div>
-                  <motion.div 
-                    className="mt-4 text-xs text-green-600 font-medium"
-                    initial={{ opacity: 0 }}
-                    animate={statsInView ? { opacity: 1 } : {}}
-                    transition={{ delay: 1.5 }}
-                  >
-                    = $<AnimatedCounter from={0} to={45} duration={2} suffix="K+ annual savings per brand manager" inView={statsInView} />
-                  </motion.div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* Stat 2 */}
-            <motion.div
-              initial={{ opacity: 0, y: 80, rotateX: -15 }}
-              animate={statsInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              whileHover={{ 
-                y: -10,
-                rotateX: 5,
-                transition: { duration: 0.3 }
-              }}
-            >
-              <Card className="relative overflow-hidden border border-slate-200 shadow-xl bg-white group hover:shadow-2xl transition-all duration-300 h-full">
-                <motion.div 
-                  className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-cyan-500"
-                  initial={{ scaleX: 0 }}
-                  animate={statsInView ? { scaleX: 1 } : {}}
-                  transition={{ duration: 1, delay: 0.6 }}
-                ></motion.div>
-                <CardContent className="p-8 text-center">
-                  <motion.div 
-                    className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform"
-                    whileHover={{ 
-                      rotate: [0, -10, 10, -10, 0],
-                      scale: 1.2
-                    }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <Zap className="w-8 h-8 text-blue-600" />
-                  </motion.div>
-                  <motion.div 
-                    className="text-4xl font-bold text-black mb-2 group-hover:text-blue-600 transition-colors"
-                    initial={{ scale: 0 }}
-                    animate={statsInView ? { scale: 1 } : {}}
-                    transition={{ duration: 0.6, delay: 1.0, ease: "backOut" }}
-                  >
-                    Minutes
-                  </motion.div>
-                  <div className="text-gray-600 font-medium mb-4">Not months for insights</div>
-                  <div className="text-sm text-gray-500 leading-relaxed">
-                    Real-time alerts and instant diagnostics
-                  </div>
-                  <motion.div 
-                    className="mt-4 text-xs text-blue-600 font-medium"
-                    initial={{ opacity: 0 }}
-                    animate={statsInView ? { opacity: 1 } : {}}
-                    transition={{ delay: 1.7 }}
-                  >
-                    <AnimatedCounter from={0} to={500} duration={2} suffix="x faster than traditional methods" inView={statsInView} />
-                  </motion.div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* Stat 3 */}
-            <motion.div
-              initial={{ opacity: 0, y: 80, rotateX: -15 }}
-              animate={statsInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              whileHover={{ 
-                y: -10,
-                rotateX: 5,
-                transition: { duration: 0.3 }
-              }}
-            >
-              <Card className="relative overflow-hidden border border-slate-200 shadow-xl bg-white group hover:shadow-2xl transition-all duration-300 h-full">
-                <motion.div 
-                  className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-pink-500"
-                  initial={{ scaleX: 0 }}
-                  animate={statsInView ? { scaleX: 1 } : {}}
-                  transition={{ duration: 1, delay: 0.8 }}
-                ></motion.div>
-                <CardContent className="p-8 text-center">
-                  <motion.div 
-                    className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform"
-                    whileHover={{ 
-                      rotate: [0, -10, 10, -10, 0],
-                      scale: 1.2
-                    }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <Target className="w-8 h-8 text-purple-600" />
-                  </motion.div>
-                  <motion.div 
-                    className="text-4xl font-bold text-black mb-2 group-hover:text-purple-600 transition-colors"
-                    initial={{ scale: 0 }}
-                    animate={statsInView ? { scale: 1 } : {}}
-                    transition={{ duration: 0.6, delay: 1.2, ease: "backOut" }}
-                  >
-                    Single
-                  </motion.div>
-                  <div className="text-gray-600 font-medium mb-4">Source of truth</div>
-                  <div className="text-sm text-gray-500 leading-relaxed">
-                    Unified data across all channels and touchpoints
-                  </div>
-                  <motion.div 
-                    className="mt-4 text-xs text-purple-600 font-medium"
-                    initial={{ opacity: 0 }}
-                    animate={statsInView ? { opacity: 1 } : {}}
-                    transition={{ delay: 1.9 }}
-                  >
-                    Eliminates data silos completely
-                  </motion.div>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            {/* Stat 4 */}
-            <motion.div
-              initial={{ opacity: 0, y: 80, rotateX: -15 }}
-              animate={statsInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              whileHover={{ 
-                y: -10,
-                rotateX: 5,
-                transition: { duration: 0.3 }
-              }}
-            >
-              <Card className="relative overflow-hidden border border-slate-200 shadow-xl bg-white group hover:shadow-2xl transition-all duration-300 h-full">
-                <motion.div 
-                  className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500 to-red-500"
-                  initial={{ scaleX: 0 }}
-                  animate={statsInView ? { scaleX: 1 } : {}}
-                  transition={{ duration: 1, delay: 1.0 }}
-                ></motion.div>
-                <CardContent className="p-8 text-center">
-                  <motion.div 
-                    className="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform"
-                    whileHover={{ 
-                      rotate: [0, -10, 10, -10, 0],
-                      scale: 1.2
-                    }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <AlertTriangle className="w-8 h-8 text-orange-600" />
-                  </motion.div>
-                  <motion.div 
-                    className="text-4xl font-bold text-black mb-2 group-hover:text-orange-600 transition-colors"
-                    initial={{ scale: 0 }}
-                    animate={statsInView ? { scale: 1 } : {}}
-                    transition={{ duration: 0.6, delay: 1.2, ease: "backOut" }}
-                  >
-                    Real-time
-                  </motion.div>
-                  <div className="text-gray-600 font-medium mb-4">Competitor alerts</div>
-                  <div className="text-sm text-gray-500 leading-relaxed">
-                    Instant notifications for threats and opportunities
-                  </div>
-                  <motion.div 
-                    className="mt-4 text-xs text-orange-600 font-medium"
-                    initial={{ opacity: 0 }}
-                    animate={statsInView ? { opacity: 1 } : {}}
-                    transition={{ delay: 2.1 }}
-                  >
-                    React before competitors do
-                  </motion.div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      <StatsSection />
 
       {/* Enhanced CTA Section with Advanced Animations */}
       <section className="pt-32 pb-20 px-6 bg-black text-white relative overflow-hidden" ref={ctaRef}>
@@ -1433,9 +633,7 @@ const Index = () => {
             animate={ctaInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            <RevealText inView={ctaInView} delay={0.2}>
-              Ready to transform your brand management?
-            </RevealText>
+            Ready to transform your brand management?
           </motion.h2>
           
           <motion.p 
@@ -1444,9 +642,7 @@ const Index = () => {
             animate={ctaInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <RevealText inView={ctaInView} delay={0.6}>
-              Join CPG leaders who've moved from reactive to proactive with Clayface's Decision Intelligence Platform.
-            </RevealText>
+            Join CPG leaders who've moved from reactive to proactive with Clayface's Decision Intelligence Platform.
           </motion.p>
           
           <motion.div 
@@ -1471,66 +667,12 @@ const Index = () => {
                   <ArrowRight className="w-4 h-4" />
                 </motion.div>
               </Button>
-
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-16 px-6 bg-gray-50 border-t border-gray-200">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
-            <div className="md:col-span-2">
-              <div className="mb-6">
-                <span className="text-black font-bold text-xl">clayface</span>
-              </div>
-              <p className="text-gray-600 mb-6 max-w-sm">
-                Decision Intelligence Platform for CPG Brand Managers. From insight to impact in minutes, not months.
-              </p>
-            </div>
-            
-            <div>
-              <h4 className="text-black font-semibold mb-4">Platform</h4>
-              <ul className="space-y-3 text-gray-600">
-                <li><a href="#" className="hover:text-black transition-colors">Smart Alerts</a></li>
-                <li><a href="#" className="hover:text-black transition-colors">Report Auto-Gen</a></li>
-                <li><a href="#" className="hover:text-black transition-colors">What-If Simulators</a></li>
-                <li><a href="#" className="hover:text-black transition-colors">Market Diagnostics</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="text-black font-semibold mb-4">Solutions</h4>
-              <ul className="space-y-3 text-gray-600">
-                <li><a href="#" className="hover:text-black transition-colors">Brand Management</a></li>
-                <li><a href="#" className="hover:text-black transition-colors">Market Intelligence</a></li>
-                <li><a href="#" className="hover:text-black transition-colors">Competitive Analysis</a></li>
-                <li><a href="#" className="hover:text-black transition-colors">Performance Tracking</a></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 className="text-black font-semibold mb-4">Resources</h4>
-              <ul className="space-y-3 text-gray-600">
-                <li><a href="#" className="hover:text-black transition-colors">Case Studies</a></li>
-                <li><a href="#" className="hover:text-black transition-colors">Documentation</a></li>
-                <li><a href="#" className="hover:text-black transition-colors">CPG Insights</a></li>
-                <li><a href="#" className="hover:text-black transition-colors">API</a></li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="mt-12 pt-8 border-t border-gray-200 flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-600">&copy; 2024 clayface. All rights reserved.</p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-gray-600 hover:text-black transition-colors">Privacy</a>
-              <a href="#" className="text-gray-600 hover:text-black transition-colors">Terms</a>
-              <a href="#" className="text-gray-600 hover:text-black transition-colors">Security</a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };
