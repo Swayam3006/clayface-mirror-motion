@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Target, Brain, Zap, AlertTriangle } from 'lucide-react';
@@ -127,7 +126,7 @@ const StatsSection = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Stat 1 */}
+          {/* Stat 1 - Updated text */}
           <motion.div
             initial={{ opacity: 0, y: 80, rotateX: -15 }}
             animate={statsInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
@@ -174,7 +173,7 @@ const StatsSection = () => {
                   animate={statsInView ? { opacity: 1 } : {}}
                   transition={{ delay: 1.5 }}
                 >
-                  = $<AnimatedCounter from={0} to={45} duration={2} suffix="K+ annual savings per brand manager" inView={statsInView} />
+                  = $<AnimatedCounter from={0} to={45} duration={2} suffix="K+ annual savings per brand" inView={statsInView} />
                 </motion.div>
               </CardContent>
             </Card>

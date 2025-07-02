@@ -1,4 +1,3 @@
-
 import React, { useRef } from 'react';
 import { motion, useInView, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -129,7 +128,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
               ease: "easeInOut"
             }}
           />
-          Decision Intelligence Platform for CPG Brand Managers
+          Decision Intelligence Platform for CPG Brands
         </motion.div>
         
         <motion.h1 

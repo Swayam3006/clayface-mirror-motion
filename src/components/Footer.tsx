@@ -16,7 +16,7 @@ const Footer = () => {
             </div>
 
             <p className="text-gray-600 mb-6 max-w-sm">
-              Decision Intelligence Platform for CPG Brand Managers. From insight to impact in minutes, not months.
+              Decision Intelligence Platform for CPG Brands. From insight to impact in minutes, not months.
             </p>
           </div>
           
