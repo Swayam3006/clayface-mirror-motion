@@ -61,7 +61,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
           }}
           transition={{ 
             duration: 20,
-            repeat: false,
+            repeat: Infinity,
             ease: "easeInOut"
           }}
         />
@@ -75,7 +75,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
           }}
           transition={{ 
             duration: 25,
-            repeat: false,
+            repeat: Infinity,
             ease: "easeInOut",
             delay: 5
           }}
@@ -89,7 +89,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
           }}
           transition={{ 
             duration: 15,
-            repeat: false,
+            repeat: Infinity,
             ease: "linear"
           }}
         />
@@ -124,7 +124,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
             }}
             transition={{ 
               duration: 2,
-              repeat: false,
+              repeat: Infinity,
               ease: "easeInOut"
             }}
           />
@@ -156,7 +156,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
               y: { duration: 0.6, delay: 0.8 },
               backgroundPosition: {
                 duration: 3,
-                repeat: false,
+                repeat: Infinity,
                 ease: "easeInOut"
               }
             }}
@@ -258,7 +258,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
             }}
             transition={{ 
               duration: 3,
-              repeat: false,
+              repeat: Infinity,
               ease: "easeInOut"
             }}
             whileHover={{ scale: 1.1 }}
@@ -273,7 +273,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
             }}
             transition={{ 
               duration: 2.5,
-              repeat: false,
+              repeat: Infinity,
               ease: "easeInOut",
               delay: 0.5
             }}
