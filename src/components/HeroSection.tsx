@@ -50,7 +50,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
         className="absolute inset-0 -z-10"
         style={{ y: heroParallaxY }}
       >
-        {/* Floating gradient orbs */}
+        {/* Floating gradient orbs - FIXED: Removed infinite repeat */}
         <motion.div 
           className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-r from-blue-200/30 to-purple-200/30 rounded-full blur-3xl"
           animate={{ 
@@ -61,7 +61,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
           }}
           transition={{ 
             duration: 20,
-            // repeat: 0,
+            repeat: 0, // Run only once
             ease: "easeInOut"
           }}
         />
@@ -75,7 +75,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
           }}
           transition={{ 
             duration: 25,
-            // repeat: 0,
+            repeat: 0, // Run only once
             ease: "easeInOut",
             delay: 5
           }}
@@ -89,7 +89,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
           }}
           transition={{ 
             duration: 15,
-            // repeat: 0,
+            repeat: 0, // Run only once
             ease: "linear"
           }}
         />
@@ -124,7 +124,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
             }}
             transition={{ 
               duration: 2,
-              // repeat: 0,
+              repeat: 0, // Run only once
               ease: "easeInOut"
             }}
           />
@@ -148,15 +148,13 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
               opacity: 1, 
               y: 0,
               backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-            } : {
-              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-            }}
+            } : {}}
             transition={{ 
               opacity: { duration: 0.6, delay: 0.8 },
               y: { duration: 0.6, delay: 0.8 },
               backgroundPosition: {
                 duration: 3,
-                // repeat: 0,
+                repeat: 0, // Run only once
                 ease: "easeInOut"
               }
             }}
@@ -249,7 +247,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
             </div>
           </motion.div>
           
-          {/* Enhanced Floating elements */}
+          {/* Enhanced Floating elements - FIXED: Removed infinite repeat */}
           <motion.div 
             className="absolute -top-4 -right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium"
             animate={{ 
@@ -258,7 +256,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
             }}
             transition={{ 
               duration: 3,
-              // repeat: 0,
+              repeat: 0, // Run only once
               ease: "easeInOut"
             }}
             whileHover={{ scale: 1.1 }}
@@ -273,7 +271,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
             }}
             transition={{ 
               duration: 2.5,
-              // repeat: 0,
+              repeat: 0, // Run only once
               ease: "easeInOut",
               delay: 0.5
             }}
