@@ -1,3 +1,4 @@
+
 import React, { useRef } from 'react';
 import { motion, useInView, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -28,7 +29,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
             <motion.span
               className="inline-block"
               initial={{ y: 100, opacity: 0 }}
-              animate={inView ? { y: 0, opacity: 1 } : {}}
+              animate={inView ? { y: 0, opacity: 1 } : { y: 100, opacity: 0 }}
               transition={{
                 duration: 0.8,
                 delay: delay + (index * 0.1),
@@ -105,7 +106,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
         <motion.div 
           className="inline-block bg-blue-50 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-8 relative"
           initial={{ scale: 0, opacity: 0 }}
-          animate={heroInView ? { scale: 1, opacity: 1 } : {}}
+          animate={heroInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
           transition={{ 
             duration: 0.6, 
             ease: "backOut",
@@ -134,7 +135,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
         <motion.h1 
           className="text-5xl md:text-7xl font-bold mb-8 leading-tight tracking-tight"
           initial={{ opacity: 0, y: 50 }}
-          animate={heroInView ? { opacity: 1, y: 0 } : {}}
+          animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
           <RevealText inView={heroInView} delay={0.6}>
@@ -146,19 +147,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
             initial={{ opacity: 0, y: 20 }}
             animate={heroInView ? { 
               opacity: 1, 
-              y: 0,
-              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
-            } : {
-              backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
+              y: 0
+            } : { 
+              opacity: 0, 
+              y: 20 
             }}
             transition={{ 
               opacity: { duration: 0.6, delay: 0.8 },
-              y: { duration: 0.6, delay: 0.8 },
-              backgroundPosition: {
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }
+              y: { duration: 0.6, delay: 0.8 }
             }}
             style={{
               background: "linear-gradient(45deg, #2563eb, #7c3aed, #ec4899)",
@@ -177,7 +173,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
         <motion.p 
           className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed"
           initial={{ opacity: 0, y: 30 }}
-          animate={heroInView ? { opacity: 1, y: 0 } : {}}
+          animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, delay: 1.0 }}
         >
           <RevealText inView={heroInView} delay={1.8}>
@@ -189,7 +185,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
         <motion.div 
           className="flex justify-center items-center mb-20"
           initial={{ opacity: 0, y: 40 }}
-          animate={heroInView ? { opacity: 1, y: 0 } : {}}
+          animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           transition={{ duration: 0.6, delay: 1.2 }}
         >
           <motion.div
@@ -213,7 +209,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
         <motion.div 
           className="relative"
           initial={{ opacity: 0, y: 60, scale: 0.9 }}
-          animate={heroInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+          animate={heroInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 60, scale: 0.9 }}
           transition={{ duration: 0.8, delay: 1.4, ease: "easeOut" }}
         >
           <motion.div 
