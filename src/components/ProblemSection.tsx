@@ -1,4 +1,3 @@
-
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { AlertTriangle, Database, Clock, Target } from 'lucide-react';
@@ -252,7 +251,7 @@ const ProblemSection = () => {
             Discover the Solution
             <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
