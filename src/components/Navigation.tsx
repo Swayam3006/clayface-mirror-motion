@@ -9,6 +9,16 @@ interface NavigationProps {
 }
 
 const Navigation: React.FC<NavigationProps> = ({ progressWidth }) => {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
   return (
     <motion.nav 
       className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100"
@@ -32,22 +42,26 @@ const Navigation: React.FC<NavigationProps> = ({ progressWidth }) => {
             <motion.img 
               src="/lovable-uploads/clayface-logo.png"
               alt="Clayface Logo"
-              className="h-8 w-auto"  // use w-auto to keep proper aspect ratio
+              className="h-8 w-auto"
               whileHover={{ 
                 scale: 1.1,
                 rotate: [0, -10, 10, -10, 0],
                 transition: { duration: 0.5 }
               }}
             />
-
           </motion.div>
           
           <div className="hidden md:flex items-center space-x-8">
-            {['Platform', 'Solutions', 'Resources', 'About'].map((item, index) => (
-              <motion.a 
-                key={item}
-                href={`#${item.toLowerCase()}`} 
-                className="text-gray-600 hover:text-black transition-colors text-sm font-medium"
+            {[
+              { name: 'Platform', id: 'modules' },
+              { name: 'Solutions', id: 'stats' },
+              { name: 'Resources', id: 'problem' },
+              { name: 'About', id: 'footer' }
+            ].map((item, index) => (
+              <motion.button
+                key={item.name}
+                onClick={() => scrollToSection(item.id)}
+                className="text-gray-600 hover:text-black transition-colors text-sm font-medium cursor-pointer"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 * index, duration: 0.5 }}
@@ -57,8 +71,8 @@ const Navigation: React.FC<NavigationProps> = ({ progressWidth }) => {
                   transition: { duration: 0.2 }
                 }}
               >
-                {item}
-              </motion.a>
+                {item.name}
+              </motion.button>
             ))}
           </div>
           
@@ -82,8 +96,6 @@ const Navigation: React.FC<NavigationProps> = ({ progressWidth }) => {
                   Get started
                 </a>
               </Button>
-
-
             </motion.div>
             <div className="md:hidden">
               <motion.div whileHover={{ rotate: 90 }} whileTap={{ scale: 0.9 }}>
