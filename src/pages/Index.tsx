@@ -411,7 +411,7 @@ const Index = () => {
           <motion.div 
             className="absolute -top-3 -right-3 bg-green-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg"
             animate={{ y: [0, -5, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 2, ease: "easeInOut" }}
           >
             ✓ Live
           </motion.div>
@@ -419,7 +419,7 @@ const Index = () => {
           <motion.div 
             className="absolute -bottom-3 -left-3 bg-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg"
             animate={{ y: [0, 5, 0] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+            transition={{ duration: 2.5, ease: "easeInOut", delay: 0.5 }}
           >
             Real-time Data
           </motion.div>
@@ -610,7 +610,7 @@ const Index = () => {
             }}
             transition={{ 
               duration: 12,
-              repeat: Infinity,
+              // repeat: Infinity,
               ease: "easeInOut"
             }}
           />
@@ -623,7 +623,7 @@ const Index = () => {
             }}
             transition={{ 
               duration: 15,
-              repeat: Infinity,
+              // repeat: Infinity,
               ease: "easeInOut",
               delay: 3
             }}
