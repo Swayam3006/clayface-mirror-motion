@@ -122,7 +122,7 @@ const ProblemSection = () => {
             animate={problemInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Brand Managers Are{" "}
+            CPG Brands Are{" "}
             <motion.span
               className="relative inline-block"
               initial={{ fontWeight: 400 }}
@@ -191,7 +191,7 @@ const ProblemSection = () => {
             transition={{ duration: 0.6, delay: 1.0 }}
           >
             <RevealText inView={problemInView} delay={1.2}>
-              Despite having access to comprehensive dashboards and detailed reports, most brand managers struggle to extract actionable insights when critical decisions need to be made. This leads to delayed strategic initiatives, reliance on intuition over data, and missed growth opportunities.
+              Despite having access to comprehensive dashboards and detailed reports, most CPG brands struggle to extract actionable insights when critical decisions need to be made. This leads to delayed strategic initiatives, reliance on intuition over data, and missed growth opportunities.
             </RevealText>
           </motion.p>
         </motion.div>
@@ -252,7 +252,7 @@ const ProblemSection = () => {
             Discover the Solution
             <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
