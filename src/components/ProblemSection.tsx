@@ -39,7 +39,7 @@ const ProblemSection = () => {
   const problemInView = useInView(problemRef, { once: true, amount: 0.2 });
 
   return (
-    <section className="pt-32 pb-24 px-6 bg-gradient-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden" ref={problemRef}>
+    <section id="problem" className="pt-32 pb-24 px-6 bg-gradient-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden" ref={problemRef}>
       {/* Advanced Parallax Background */}
       <motion.div 
         className="absolute inset-0 opacity-30"
