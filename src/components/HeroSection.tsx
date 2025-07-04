@@ -20,6 +20,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
     delay?: number;
     className?: string;
   }> = ({ children, inView, delay = 0, className = "" }) => {
+    const [hasAnimated, setHasAnimated] = useState(false);
+
+    useEffect(() => {
+      if (inView && !hasAnimated) {
+      setHasAnimated(true);
+      }
+    }, [inView, hasAnimated]);
+    
     const words = children.split(' ');
     
     return (
