@@ -137,6 +137,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
           initial={{ opacity: 0, y: 50 }}
           animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
         >
           <RevealText inView={heroInView} delay={0.6}>
             From insight to impact
@@ -175,6 +176,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
           initial={{ opacity: 0, y: 30 }}
           animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, delay: 1.0 }}
+          viewport={{ once: true }}
         >
           <RevealText inView={heroInView} delay={1.8}>
             Your Strategic Command Center. Access a single source of truth, generate actionable insights instantly, 
