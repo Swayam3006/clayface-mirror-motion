@@ -37,7 +37,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
             <motion.span
               className="inline-block"
               initial={{ y: 100, opacity: 0 }}
-              animate={inView ? { y: 0, opacity: 1 } : { y: 100, opacity: 0 }}
+              animate={hasAnimated ? { y: 0, opacity: 1 } : {}}
               transition={{
                 duration: 0.8,
                 delay: delay + (index * 0.1),
