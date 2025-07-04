@@ -25,7 +25,7 @@ interface HeroSectionProps {
             <motion.span
               className="inline-block"
               initial={{ y: 100, opacity: 0 }}
-              animate={hasAnimated ? { y: 0, opacity: 1 } : {}}
+              animate={inView ? { y: 0, opacity: 1 } : {}}
               transition={{
                 duration: 0.8,
                 delay: delay + (index * 0.1),
