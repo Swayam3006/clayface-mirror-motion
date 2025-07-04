@@ -1,5 +1,5 @@
 
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { motion, useInView, useTransform, useMotionValue, useSpring } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 
@@ -9,25 +9,13 @@ interface HeroSectionProps {
   heroOpacity: any;
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, heroOpacity }) => {
-  const heroRef = useRef(null);
-  const heroInView = useInView(heroRef, { once: true, amount: 0.3 });
-
-  // Advanced Text Reveal Component
+// Advanced Text Reveal Component
   const RevealText: React.FC<{ 
     children: string; 
     inView: boolean; 
     delay?: number;
     className?: string;
   }> = ({ children, inView, delay = 0, className = "" }) => {
-    const [hasAnimated, setHasAnimated] = useState(false);
-
-    useEffect(() => {
-      if (inView && !hasAnimated) {
-      setHasAnimated(true);
-      }
-    }, [inView, hasAnimated]);
-    
     const words = children.split(' ');
     
     return (
@@ -37,7 +25,7 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
             <motion.span
               className="inline-block"
               initial={{ y: 100, opacity: 0 }}
-              animate={hasAnimated ? { y: 0, opacity: 1 } : { y: 100, opacity: 0 }}
+              animate={hasAnimated ? { y: 0, opacity: 1 } : {}}
               transition={{
                 duration: 0.8,
                 delay: delay + (index * 0.1),
@@ -51,6 +39,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, her
       </span>
     );
   };
+
+const HeroSection: React.FC<HeroSectionProps> = ({ heroParallaxY, heroScale, heroOpacity }) => {
+  const heroRef = useRef(null);
+  const heroInView = useInView(heroRef, { once: true, amount: 0.3 });
 
   return (
     <section className="pt-48 pb-20 px-6 relative overflow-hidden" ref={heroRef}>
